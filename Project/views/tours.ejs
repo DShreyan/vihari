@@ -1,0 +1,52 @@
+<%- include("partials/header.ejs"); %>
+<%- include("partials/navbar.ejs"); %>
+<div id="pack" class="packages" style="margin-top: 40px;">
+    
+    <div class="container">
+        <div class="packages-content">
+            <div class="row">
+                <% for(const tour of tours){%>
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <div >
+                            <img style="height:200px" src="/<%=tour.DispImageurl%>" alt="package-place">
+                        </div>
+                        
+                        <div class="single-package-item-txt">
+                            <h3><a href="/admindb/opentour/<%=tour._id%>"><%=tour.tname%></a> <span class="pull-right"><i class="fa-solid fa-indian-rupee-sign "></i><%=tour.tprice%></span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i> food facilities
+                                 </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    
+                                </p>
+                            </div>
+                            <div class="about-btn">
+                               <a href=""> <button style="background-color: #06bbcc;" class="about-view packages-btn">
+                                    book now
+                                </button></a>
+                            </div>
+                        </div>
+                    </div><!--/.single-package-item-->
+
+                </div>
+            <%}%><!--/.col-->
+                </div>
+                </div>
+                </div>
+            </div>
+<%- include('partials/footer.ejs');%>

@@ -1,0 +1,171 @@
+.navbar-header a:hover {
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  * {
+    font-family: "Nunito", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: all 0.2s linear;
+  }
+  
+  html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 6rem;
+    scroll-behavior: smooth;
+  }
+  
+  section {
+    padding: 2rem 9%;
+  }
+
+  .navbar-header {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #343a40;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    cursor: pointer;
+    font-size: 2rem;
+    height: 80px;
+  }
+  
+  .navbar-header .search{
+      border-radius: 2rem;
+      border: 0.2rem solid #29d9d5;
+      background: none;
+      color: white;
+      width: 200px;
+      margin-left: 2rem;
+  }
+  
+  .btn1{
+      display: flex;
+      margin-right: 2rem;
+  }
+  
+  .navbar-header .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .navbar-header .logo span {
+    color: #06bbcc;
+  }
+  
+  .navbar-header .navbar a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 0.8rem;
+  }
+  
+  .navbar-header .navbar a:hover {
+    color: #06bbcc;
+  }
+  
+  .navbar-header .icons i {
+    font-size: 2.5rem;
+    color: white;
+    cursor: pointer;
+    margin-left: 2rem;
+  }
+  
+  .navbar-header .icons i:hover {
+    color: #06bbcc;
+  }
+  
+  .navbar-header .search-bar-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 2rem;
+    background: #343a40;
+    border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+  
+  .navbar-header .search-bar-container.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  
+  .navbar-header .search-bar-container #search-bar {
+    width: 100%;
+    padding: 1rem;
+    text-transform: none;
+    color: #343a40;
+    font-size: 1.7rem;
+    border-radius: 0.5rem;
+  }
+  
+  .navbar-header .search-bar-container label {
+    color: #fff;
+    cursor: pointer;
+    font-size: 3rem;
+    margin-left: 1.5rem;
+  }
+  
+  .navbar-header .search-bar-container label:hover {
+    color: #06bbcc;
+  }
+  
+  .closebutt{
+    visibility: hidden;
+  }
+  .nav-link{
+    padding-top: 10px;
+  }
+  /* .dropdown{
+    align-items: center;
+    justify-content: center;
+  } */
+  
+@media(max-width:900px){
+    .burge{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+    .responsivenav{
+        position: absolute;
+        top:50px;
+        width: 100%;
+        height: auto;
+        left: 20px;
+        background-color: #14141469;
+        justify-content: center;
+        align-items: center;
+        color: rgb(99, 145, 236);
+      }
+  .responsivenav .nav-link{
+    color:white
+  }
+  .responsivenav .nav-link:hover{
+    color: #06bbcc;
+  }
+}
+@media(max-width:400px){
+  #header-search-bar{
+    width: 60px;
+  }
+  .icons{
+    margin-right: 10px;
+  }
+}

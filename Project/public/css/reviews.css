@@ -1,0 +1,34 @@
+.slide-container{
+    width: 80vw;
+    background-color: aqua;
+    padding: 0px;
+  }
+  .slide-content{
+    background-color: white;
+    padding: 10px;
+    height: 400px;
+    overflow: hidden; 
+   
+  }
+  .swiper-slide{
+    width: 400px;
+  }
+  .home1-testm-img
+  {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 60px auto 0;
+  }
+
+  .home1-testm-img img{    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .inner-card{
+    box-shadow: 1px 1px 3px grey;
+  }
+  /* .swiper-button-next::after, .swiper-button-prev::after {
+    content: "";
+} */

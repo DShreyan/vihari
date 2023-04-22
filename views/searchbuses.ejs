@@ -1,0 +1,292 @@
+<%- include("partials/header.ejs"); %>
+
+
+<div class="buses">
+    <nav style="color:white" class="searchnav bus-nav container-fluid">
+     <div class="bus-nav-item-1">
+        <a href="/" class="bus-home">HOME</a> 
+     </div>
+     <div class="bus-nav-item-2">
+       <form action="#" class="search-bar">
+          <input type="text" name="bus" class=" search-box" id="search-bus" placeholder="Enter bus number">
+          <a href="#" class="search-icon"><span class="search-icon"><i class="fa-solid fa-magnifying-glass "></i></span></a>
+       </form>
+     </div>
+     <div class="bus-nav-item-3">
+          <a href="#" class=" nav-icon"data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-filter fa-lg"></i></a>   
+     </div>
+     <div class="bus-nav-item-4">
+         <a href="#" class=" nav-icon"><i class="fa-solid fa-user fa-lg"></i></a>   
+        </div> 
+    </nav>
+    <div class="travel-details">
+         <div class="route ">
+           <span class="start "> Koyambedu,chennai </span>
+           <span><i class="fa-solid fa-arrow-right"></i></span>
+           <span class="dest"> Bangalore </span>
+         </div>
+         <div class=" date">
+            <span class="prev "><a href="#"><i class="fa-solid fa-angle-left fa-2x"></i></a></span>
+          <span class="DOJ"><span class="date">23 Mar</span> <span class="day">Sun</span></span>
+            <span class="next"><a href="#"><i class="fa-solid fa-angle-right fa-2x"></i></a></span>
+         </div>
+         <div class="Travel-submit">
+            <form action="/" method="get">
+            <input type="submit" value="Modify" class="btn btn-primary modify"> 
+         </form>
+         </div>
+     </div>
+        <hr>
+        <div class="row-bus bus-customize">
+        <div class="bus-count" >
+        <span style="font-weight: 600;" id="bus-count">6</span> <span style="font-weight: 600;"> BUSES</span> <span>found</span>
+       </div>
+       <div class="bd-1">
+          Departure
+       </div>
+       <div class="bd-2">
+          Duration
+       </div>
+       <div class="bd-3">
+         Arrival 
+       </div>
+       <div class="bd-4">
+          Fare
+       </div>
+    </div>
+        <hr>
+        <!-- start -->
+        <div class="container-fluid bus-details">
+       <div class=" bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="../images/bus1.png" class="bus-img">
+             <div class="bus-name"> PSR TRAVELS</div>
+          </div>
+          <div class="bus-item-item">
+           <span class="departure timings">10:45</span>
+           <span class="depart">Koyambedu</span>  
+          </div>
+          <div class="bus-item-item duration">
+           <span class="duration"><b>6h 15min</b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings">17:00</span>
+             <span class="depart">Bangalore</span>
+            </div>
+          <div class="bus-item-item">
+             <span class="rupees "><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price ">575</span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="./layout"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="A-C">A/C sleeper (2+1)</span> 
+          </div> 
+       </div>
+     </div> 
+ 
+     <!-- end -->
+     <!-- 2 -->
+     <div class="container-fluid bus-details">
+       <div class=" bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="../images/bus2.jpg" class="bus-img">
+             <div class="bus-name"> MSG TRAVELS</div>
+          </div>
+          <div class="bus-item-item">
+           <span class="departure timings">11:30</span>
+           <span class="depart">Koyambedu</span>  
+          </div>
+          <div class="bus-item-item duration">
+           <span class="duration"><b>07h 00min</b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings">18:30</span>
+             <span class="depart">Bangalore</span>
+            </div>
+          <div class="bus-item-item">
+             <span class="rupees "><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price ">550</span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="./layout"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="A-C">Capella A/C Sleeper (2+1)</span> 
+          </div> 
+       </div>
+     </div>
+     <!-- 3 -->
+     
+     <div class="container-fluid bus-details">
+       <div class=" bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="../images/bus3.jpg" class="bus-img">
+             <div class="bus-name"> KVR TRAVELS</div>
+          </div>
+          <div class="bus-item-item">
+           <span class="departure timings">11:45</span>
+           <span class="depart">Koyambedu</span>  
+          </div>
+          <div class="bus-item-item duration">
+           <span class="duration"><b>06h 00min</b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings">17:45</span>
+             <span class="depart">Bangalore</span>
+            </div>
+          <div class="bus-item-item ">
+             <span class="rupees "><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price ">850</span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="./layout"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="A-C"> A/C Business Class Sleeper (2+1)</span> 
+          </div> 
+       </div>
+     </div>
+     
+     <!-- 4 -->
+     <div class="container-fluid bus-details">
+       <div class=" bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="../images/intercity.jpg" class="bus-img">
+             <div class="bus-name"> IntrCity Smart Bus</div>
+          </div>
+          <div class="bus-item-item">
+           <span class="departure timings">13:00</span>
+           <span class="depart">Koyambedu</span>  
+          </div>
+          <div class="bus-item-item duration ">
+           <span class="duration"><b>06h 45min</b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings">19h 45min</span>
+             <span class="depart">Bangalore</span>
+            </div>
+          <div class="bus-item-item">
+             <span class="rupees "><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price ">750</span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="./layout"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="A-C">Bharat Benz A/C Semi Sleeper (2+2)</span> 
+          </div> 
+       </div>
+     </div>
+     <!-- 5 -->
+     <div class="container-fluid bus-details">
+       <div class=" bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="../images/bus5.jpg" class="bus-img">
+             <div class="bus-name"> Chennai Express</div>
+          </div>
+          <div class="bus-item-item">
+           <span class="departure timings">14:20</span>
+           <span class="depart">Koyambedu</span>  
+          </div>
+          <div class="bus-item-item duration">
+           <span class="duration"><b>06h 30min</b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings">20:50</span>
+             <span class="depart">Bangalore</span>
+            </div>
+          <div class="bus-item-item">
+             <span class="rupees "><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price ">850</span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="./layout"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="A-C">Volvo Multi-Axle A/C Sleeper (2+1)</span> 
+          </div> 
+       </div>
+     </div>
+     <!-- 6 -->
+     <div class="container-fluid bus-details">
+       <div class=" bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="../images/bus6.jpg" class="bus-img">
+             <div class="bus-name"> Shatabdi TRAVELS</div>
+          </div>
+          <div class="bus-item-item">
+           <span class="departure timings">23:00</span>
+           <span class="depart">Koyambedu</span>  
+          </div>
+          <div class="bus-item-item duration">
+           <span class="duration"><b>06h 15min</b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings">05:15</span>
+             <span class="depart">Bangalore</span>
+            </div>
+          <div class="bus-item-item">
+             <span class="rupees "><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price ">990</span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="./layout"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="A-C"> A/C Sleeper (2+1)</span> 
+          </div> 
+       </div>
+     </div>
+    </div>
+
+    <div class="filters">
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog">
+           <div class="modal-content"> 
+             <div class="modal-header">
+               <h1 class="modal-title fs-5" id="staticBackdropLabel">Filters</h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+               <form action="#">
+                  <h5>Bus type</h5>
+                 <ul class="bus-types">
+                 <li class="type-class"> <input type="radio" name="radioList" id=""> A/C</li>
+                 <li class="type-class"> <input type="radio" name="radioList" id=""> non A/C</li>
+                 <li class="type-class"> <input type="radio" name="radioList" id=""> A/C business class</li>
+                 <li class="type-class"> <input type="radio" name="radioList" id=""> semi sleeper </li>
+                 <li class="type-class"> <input type="radio" name="radioList" id=""> sleeper </li>
+                 <li class="type-class"> <input type="radio" name="radioList" id=""> seater </li>
+               </ul>
+               <h5>Sort by</h5>
+               <ul class="departure-time">
+                  <li class="type-class"> <input type="radio" name="radioList" id="before-6"> <svg style="width:10%; opacity:0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 17c-.041.328-.069.661-.069 1s.028.672.069 1h-4.069v-2h4.069zm6.931-7h2v-5h3l-4-4-4 4h3v5zm-3.897 1.688l-2.88-2.881-1.415 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm12.828 5.312c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-1.931 1c0 .341-.035.674-.09 1h-11.82c-.055-.326-.09-.659-.09-1 0-3.314 2.686-6 6-6s6 2.686 6 6zm-2.142-1c-.448-1.72-2.001-3-3.858-3-1.858 0-3.41 1.28-3.857 3h7.715zm3.92-8.193l-2.881 2.881c.528.411 1.003.886 1.414 1.414l2.881-2.881-1.414-1.414zm4.222 12.193h-24v2h24v-2z"/></svg> Before 6 am</li>
+                  <li class="type-class"> <input type="radio" name="radioList" id="6to12"> <svg style="width:10%; opacity:0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 13h-4.069v-2h4.069c-.041.328-.069.661-.069 1s.028.672.069 1zm3.034-7.312l-2.881-2.881-1.414 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm11.209 1.414l2.881-2.881-1.414-1.414-2.881 2.881c.528.411 1.002.886 1.414 1.414zm-6.312-3.102c.339 0 .672.028 1 .069v-4.069h-2v4.069c.328-.041.661-.069 1-.069zm0 16c-.339 0-.672-.028-1-.069v4.069h2v-4.069c-.328.041-.661.069-1 .069zm7.931-9c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-3.033 7.312l2.88 2.88 1.415-1.414-2.88-2.88c-.412.528-.886 1.002-1.415 1.414zm-11.21-1.415l-2.88 2.88 1.414 1.414 2.88-2.88c-.528-.411-1.003-.885-1.414-1.414zm2.312-4.897c0 2.206 1.794 4 4 4s4-1.794 4-4-1.794-4-4-4-4 1.794-4 4zm10 0c0 3.314-2.686 6-6 6s-6-2.686-6-6 2.686-6 6-6 6 2.686 6 6z"/></svg>  6 am to 12 pm </li>
+                  <li class="type-class"> <input type="radio" name="radioList" id="12to6"> <svg style="width:10%; opacity:0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4.069 17c-.041.328-.069.661-.069 1s.028.672.069 1h-4.069v-2h4.069zm8.931-16h-2v5h-3l4 4 4-4h-3v-5zm-5.897 10.688l-2.88-2.881-1.415 1.414 2.881 2.881c.411-.529.885-1.003 1.414-1.414zm12.828 5.312c.041.328.069.661.069 1s-.028.672-.069 1h4.069v-2h-4.069zm-1.931 1c0 .341-.035.674-.09 1h-11.82c-.055-.326-.09-.659-.09-1 0-3.314 2.685-6 6-6 3.314 0 6 2.686 6 6zm-2.142-1c-.448-1.72-2.001-3-3.858-3-1.858 0-3.41 1.28-3.857 3h7.715zm3.92-8.193l-2.881 2.881c.528.411 1.003.886 1.414 1.414l2.881-2.881-1.414-1.414zm4.222 12.193h-24v2h24v-2z"/></svg> 12 pm to 6 pm </li>
+                  <li class="type-class"> <input type="radio" name="radioList" id="after-6"> <svg style="width:10%; opacity:0.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.719 2.082c-2.572 2.028-4.719 5.212-4.719 9.918 0 4.569 1.938 7.798 4.548 9.895-4.829-.705-8.548-4.874-8.548-9.895 0-5.08 3.808-9.288 8.719-9.918zm1.281-2.082c-6.617 0-12 5.383-12 12s5.383 12 12 12c1.894 0 3.87-.333 5.37-1.179-3.453-.613-9.37-3.367-9.37-10.821 0-7.555 6.422-10.317 9.37-10.821-1.74-.682-3.476-1.179-5.37-1.179zm0 10.999c1.437.438 2.562 1.564 2.999 3.001.44-1.437 1.565-2.562 3.001-3-1.436-.439-2.561-1.563-3.001-3-.437 1.436-1.562 2.561-2.999 2.999zm8.001.001c.958.293 1.707 1.042 2 2.001.291-.959 1.042-1.709 1.999-2.001-.957-.292-1.707-1.042-2-2-.293.958-1.042 1.708-1.999 2zm-1-9c-.437 1.437-1.563 2.562-2.998 3.001 1.438.44 2.561 1.564 3.001 3.002.437-1.438 1.563-2.563 2.996-3.002-1.433-.437-2.559-1.564-2.999-3.001z"/></svg> After 6 pm </li>
+               </ul>
+               </form>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary clear-all" onclick="clearAll()">Clear all</button>
+               <button type="button" class="btn btn-primary apply-filters"data-bs-dismiss="modal">Apply</button>
+             </div>
+           </div>
+         </div>
+       </div>
+   </div>
+   <script>
+      function clearAll(){
+        var list=document.getElementsByName("radioList");
+        for( i=0;i<list.length; i++){
+         if(list[i].checked==true){
+            list[i].checked=false;
+         }
+        } 
+      }
+   </script>
+
+
+<%- include('partials/footer.ejs');%>

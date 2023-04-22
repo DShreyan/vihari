@@ -1,0 +1,94 @@
+<%- include("partials/header.ejs"); %>
+<%- include("partials/signedinnav.ejs"); %>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Bus Image</th>
+        <th scope="col">Travel Agency</th>
+        <th scope="col">Boarding Station</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Fare</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td scope="row" style="max-width: 100px;">
+                <div><img width="200px" src="/images/bus1.png" alt=""></div>
+       </td>
+        <td>APSRTC</td>
+        <td style="max-width: 50px;">Sricity</td>
+        <td>Chennai</td>
+        <td>200</td>
+        <td><button style="width: 50%; top:0;" id="b1" type="button" onclick="myFunction1()"  class="btn btn-lg  btn-outline-danger">Cancel ticket</button></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td scope="row" style="max-width: 100px;">
+                <div><img width="200px" src="/images/bus3.jpg" alt=""></div>
+       </td>
+        <td>KSRTC</td>
+        <td style="max-width: 50px;">Bangalore</td>
+        <td>Tirupathi</td>
+        <td>700</td>
+        <td><button style="width: 50%; top:0;" id="b2" type="button" onclick="myFunction2()"  class="btn btn-lg  btn-outline-danger">Cancel ticket</button></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td scope="row" style="max-width: 100px;">
+                <div><img width="200px" src="/images/bus1.png" alt=""></div>
+       </td>
+        <td>Orange</td>
+        <td style="max-width: 50px;">Mumbai</td>
+        <td>Pune</td>
+        <td>1500</td>
+        <td><button style="width: 50%; top:0;" id="b3" type="button" onclick="myFunction3()"  class="btn btn-lg  btn-outline-danger">Cancel ticket</button></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td scope="row" style="max-width: 100px;">
+                <div><img width="200px" src="/images/bus3.jpg" alt=""></div>
+       </td>
+        <td>PSP Travels</td>
+        <td style="max-width: 50px;">Nellore</td>
+        <td>Eluru</td>
+        <td>900</td>
+        <td><button style="width: 50%; top:0;" id="b4" type="button" onclick="myFunction4()"  class="btn btn-lg  btn-outline-danger">Cancel ticket</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    function myFunction1() {
+        alert("Your ticket is cancelled!!! and refund has been initiated");
+        var p= document.getElementById("b1");
+        p.innerHTML="Cancelled";
+        p.classList.remove("btn-outline-danger");
+        p.classList.add("btn-danger");
+      }
+    function myFunction2() {
+        alert("Your ticket is cancelled!!! and refund has been initiated");
+        var p= document.getElementById("b2");
+        p.innerHTML="Cancelled";
+        p.classList.remove("btn-outline-danger");
+        p.classList.add("btn-danger");
+      }
+    function myFunction3() {
+        alert("Your ticket is cancelled!!! and refund has been initiated");
+        var p= document.getElementById("b3");
+        p.innerHTML="Cancelled";
+        p.classList.remove("btn-outline-danger");
+        p.classList.add("btn-danger");
+      }
+    function myFunction4() {
+      alert("Your ticket is cancelled!!! and refund has been initiated");
+      var p= document.getElementById("b4");
+      p.innerHTML="Cancelled";
+      p.classList.remove("btn-outline-danger");
+      p.classList.add("btn-danger");
+    }
+
+    </script>
+<%- include("partials/footer.ejs"); %>

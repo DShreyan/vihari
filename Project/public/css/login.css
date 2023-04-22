@@ -1,0 +1,153 @@
+div.login-page{
+    background:linear-gradient(45deg,blue ,rgb(27, 22, 54) ,rgb(95, 95, 230) );
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    height: 1000px;  
+    height: auto;
+    margin-bottom: -120px;
+}
+ 
+div.container.signin{
+    display: block;
+    width: 60%;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     border: 2px solid white;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background:linear-gradient(45deg,rgb(189, 228, 241)52%,rgb(28, 21, 126)30%);
+    opacity: 0.9;
+    border-radius: 19px;
+    filter: contrast(1.75);
+}
+div.container.login{
+    display: block;
+    width: 60%;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     border: 2px solid white;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background:linear-gradient(45deg,rgb(189, 228, 241)47%,rgb(28, 21, 126)30%);
+    opacity: 0.9;
+    border-radius: 19px;
+    filter: contrast(1.75);
+    margin-top: 0px; 
+}
+div img.image-logo{
+    width:42%;
+    margin: auto 0;
+    margin-left: 45%;
+    margin-top: 5%;
+    border-radius: 50%;
+}
+div.input-group.mb-3{
+    margin:auto 0;
+    margin-left:0%;
+    margin-top: 10%;
+   background-color: rgb(17, 99, 176);
+   width: 100%;
+   font-weight: 600;
+}
+input.form-control.inputs{
+    background-color: rgba(243, 249, 240, 0.984);
+    border-radius: 0px;
+    box-shadow: 2px 2px 5px black;
+    height: 55px;
+    font-size:large;
+}
+label.label-login{
+    font-size:large;
+}
+input#email{
+    text-transform: lowercase;
+}
+
+span.span.input-group-text{
+    border-radius: 0%;
+    background-color: rgb(155, 130, 202);
+    filter: contrast(1.75);
+    width: 20%;
+    box-shadow: 2px 2px 5px black;
+}
+i.fa-solid.icon{
+     display: block;
+     width: 90px;
+     margin: auto 0; 
+}
+input.btn.btn-submit-login{
+    margin: auto 0;
+    margin-left: 0%;
+    margin-top: 10%;
+    width: 100%;
+   background-color: blue;
+   color: aliceblue;
+   height: 40px;
+   border-radius: 1rem;
+   font-size: medium;
+}
+input.btn-submit-login:hover{
+    background-color: rgb(7, 7, 48);
+    color: aliceblue;
+}
+div.row.signin a{
+ text-decoration: none;
+ text-align: center;
+ margin-left: 0%;
+color: rgb(53, 73, 73);
+font-size: small;
+}
+
+span.invalid-form{
+    display: none;
+   background:rgb(189, 228, 241);
+
+   color: rgb(96, 7, 7);
+}
+@media screen and (max-width:770px) {
+    div.input-group.mb-3,div.row.signin a,button.btn.btn-primary{
+      width: 80%;
+      margin: 10%;  
+    } 
+    div.container.login{
+        width: 80%;
+        background:linear-gradient(to top,rgb(189, 228, 241)67%,rgb(28, 21, 126)30%);
+       }
+       div.container.signin{
+        width: 80%;
+        background:linear-gradient(to top,rgb(189, 228, 241)67%,rgb(28, 21, 126)30%);
+       }
+       div img.image-logo{
+        margin: auto 0;
+        margin-left: 30%;
+        margin-top: 10%;
+        margin-bottom:20% ;
+        background-color: rgb(28, 21, 126);
+       }
+}
+@media screen and (max-width:570px) {
+   div.container.signin{
+    width: 80%;
+    background:linear-gradient(to top,rgb(189, 228, 241)75%,rgb(28, 21, 126)30%);
+   }
+   div.container.login{
+    width: 80%;
+    background:linear-gradient(to top,rgb(189, 228, 241)67%,rgb(28, 21, 126)30%);
+   }
+   div img.image-logo{
+    margin: auto 0;
+    margin-left: 30%;
+    margin-top: 10%;
+    margin-bottom:20% ;
+    background-color: rgb(28, 21, 126);
+   }
+
+    div.input-group.mb-3,div.row.signin a,button.btn.btn-submit-login{
+        width: 80%;
+        margin-left: 5%; 
+        
+      }
+      i.fa-solid.icon{
+        width: 40%;
+        margin-right: 10%;
+      }   
+}

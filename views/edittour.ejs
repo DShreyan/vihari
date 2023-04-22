@@ -1,0 +1,30 @@
+<!-- edit-tour.ejs -->
+
+<%- include("partials/admindbheader.ejs"); %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Edit Tour</h3>
+                </div>
+                <div class="panel-body">
+                    <form method="POST" action="/admindb/update/<%= tour._id %>">
+                        <div class="form-group">
+                            <label for="tname">Tour Name</label>
+                            <input type="text" class="form-control" id="tname" name="tname" value="<%= tour.tname %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="tprice">Tour Price</label>
+                            <input type="number" class="form-control" id="tprice" name="tprice" value="<%= tour.tprice %>">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Tour</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/admindbfooter.ejs"); %>

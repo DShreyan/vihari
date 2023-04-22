@@ -1,0 +1,62 @@
+<%- include("partials/admindbheader.ejs");%>
+<div style="padding-left: 500px;"><h1>Buses Details</h1></div>
+<a href="/addbus"><button class="addnew btn btn-success"type="button" style="margin-left: 1350px;margin-bottom: 25px;"><i class='fa fa-user-plus'></i>&nbsp; Add New Bus</button></a>
+<hr>
+<div class="row-bus bus-customize">
+<div class="bus-count col-sm-3" >
+<span style="font-weight: 600;margin-left:5%" id="bus-count">Total</span> <span style="font-weight: 600;"> BUSES</span> <span>found</span>
+</div>
+<div class="col-sm-2">
+  Departure
+</div>
+<div class="col-sm-2">
+  Duration
+</div>
+<div class="col-sm-2">
+ Arrival 
+</div>
+<div class="col-sm-2">
+  Fare
+</div>
+</div>
+<hr>
+
+<% for(const bus of buses){%>
+<div class="container-fluid bus-details">
+    <div class="row bus-item">
+      
+       <div class="col-sm-3">
+          <img src="/<%= bus.Imageurl %>" class="bus-img">
+          <span class="bus-name"><%=bus.trname%></span>
+       </div>
+       <div class="col-sm-2 px-5" >
+        <span class="departure"><%=bus.deptime%></span>
+        <span class="depart"><%=bus.srcname%></span>  
+       </div>
+       <div class="col-sm-2 px-5">
+        <span class="duration"><%=bus.durtime%></span>
+       </div>
+       <div class="col-sm-2 px-5">
+          <span class="Arrival timings"><%=bus.arrtime%></span>
+          <span class="depart"><%=bus.destname%></span>
+         </div>
+       <div class="col-sm-2">
+          <span class="rupees Arrival"><i class="fa-solid fa-indian-rupee-sign "></i></span>
+          <span class="price Arrival"><%=bus.tktprice%></span>
+          <div style="margin-left:200px">
+            <a href="/admindb/editbus/<%=bus._id%>"><button class="btn btn-success"> EditBus</button></a>
+            <a  href="/admindb/deletebus/<%=bus._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger"> Remove Bus</button></a>
+
+          </div>
+       </div> 
+       <div class="col-sm-2">
+         <span class="A-C"><%=bus.btype%></span> 
+       </div> 
+      
+    </div>
+    
+
+  </div> 
+  <%}%>
+
+  <%- include("partials/admindbfooter.ejs"); %>
