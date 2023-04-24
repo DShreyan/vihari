@@ -1,0 +1,60 @@
+<%- include("partials/admindbheader.ejs");%>
+  <style>
+    .adminann {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      
+      .adminann label {
+        display: block;
+        margin-bottom: 10px;
+        color: #333;
+      }
+      
+      .adminann input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        background-color: #fff;
+        box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .announcement {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 3px;
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .announcement:hover {
+        background-color: #0056b3;
+      }
+      
+  </style>
+    
+        <h1 style="text-align: center;">Announcements</h1>
+        <br><br>
+        <form class="adminann" action="/admindb/announcements" method="POST">
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject"><br>
+          
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea><br>
+          
+            <button class="announcement" type="submit">Send Announcement</button>
+          </form>
+  </body>
+  <%- include("partials/admindbfooter.ejs");%>

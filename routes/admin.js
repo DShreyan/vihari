@@ -35,7 +35,8 @@ router.get('/admindb/deleteplace/:id',adminController.Removeplace);
 router.get('/admindb/deletetour/:tourid',adminController.Removetour);
 router.get('/admindb/deleteuser/:id',adminController.Removeuser);
 router.post('/admindb/edit/:tourid',adminController.postEditTour);
-
-
-
+// router.post('/admindb/edit/:tourid',image.single('tourimage'),adminController.postEditTour);
+router.get('/admindb/announcements',adminController.getannouncements);
+router.post('/admindb/announcements',adminController.sendannouncements);
+router.get('/admin/adminprofile',adminController.getAdminProfile);
 module.exports = router;

@@ -43,22 +43,26 @@ app.use('/images',express.static(__dirname+"/images"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', './views')
 app.set('view engine', 'ejs')
+const Tour=require('./models/tour');
 
 const adminroutes = require("./routes/admin");
 const authRoutes=require('./routes/auth');
 const tourRoutes=require('./routes/tour');
 const userRoutes=require('./routes/user');
-
+const busRoutes=require('./routes/bus');
 
 
 app.use(adminroutes);
 app.use(authRoutes);
 app.use(tourRoutes);
 app.use(userRoutes);
-
+app.use(busRoutes);
 
 app.get("/", function (req, res) {
-    res.render('index');
+  Tour.find({})
+  .then((tours)=>{
+    res.render('index',{tours:tours});
+  })
 });
 
 app.get("/new", function (req, res) {
@@ -82,27 +86,14 @@ app.get("/about",function(req,res){
     res.render('about')
 });
 
-app.get("/final",function(req,res){
-    res.render('final')
-});
-
 app.get("/payment",function(req,res){
     res.render('payment')
 });
 
-app.get("/searchbuses",(req,res)=>{
-    res.render("searchbuses");
-});
-
-app.get("/prevbookings",(req,res)=>{
-  res.render("prevbookings");
-});
 app.get("/cancelticket",(req,res)=>{
   res.render("cancelticket");
 });
-app.get("/adminlogin",(req,res)=>{
-  res.render("adminlogin");
-});
+
   app.post('/payment',(req,res)=>{
     res.render("payment");
   });
@@ -117,6 +108,7 @@ app.get("/layout",(req,res)=>{
 app.post("/layout",(req,res)=>{
   res.redirect("/payment");
 });
+
 mongoose
   .connect(
     "mongodb+srv://Srikar:Sailu3002@cluster0.ch9hacp.mongodb.net/Vihari"
@@ -129,4 +121,17 @@ mongoose
   })
   .catch((err) => console.log("MongoDB connection error:", err));
 
+// const Admin=require('./models/admin');
 
+// function createadmin(){
+//   const mail="admin@gmail.com";
+//   const password="admin@123";
+//   const admin=new Admin();
+//   admin.email=mail;
+//   admin.password=password;
+//   admin.firstName="Admin";
+//   admin.lastName="Admin";
+//   admin.save();
+// }
+
+// createadmin();

@@ -1,0 +1,60 @@
+<%- include("../partials/admindbheader.ejs");%>
+
+      <form method="POST" action="/admin/adminprofile">
+        <div class="container">
+          <div class="row">
+            <div class="col-4">
+              <div class="container-fluid mt-4">
+                <div class="row">
+                  <div class="mb-3">
+                    <ul class="list-group list-group-flush">
+                      <img  src="../Images/admin_avatar.png" alt="adminAvatar" style="width:200px" class="admin-image">
+                      <h3 style="text-align: center;">Admin</h3>
+                     
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+
+            <div class="col-8" >
+              <div class="container-fluid mt-4">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingInput"  value="<%=admin.firstName%>" name="FullName" readonly>
+                  <label for="floatingInput">FirstName</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="LastName" value=" " name="LastName" readonly>
+                  <label for="floatingInput">LastName</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="email" class="form-control" id="floatingInput" placeholder="Email" value="admin@gmail.com" readonly>
+                  <label for="floatingInput">Email</label>
+                </div>
+                 
+                <div class="form-floating mb-4 input-group-append">
+                  
+                  
+                    <input name="password" type="password" value="admin@123" class="form-control"  id="password" placeholder="Password" required="true" aria-label="password" aria-describedby="basic-addon1" readonly>
+                    
+                    <span class="input-group-text" onclick="password_show_hide();">
+                      <i class="fas fa-eye" id="show_eye"></i>
+                      <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                    </span>
+                    <label for="floatingInput">Password</label>
+                </div>
+              
+             
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        </form>
+
+     
+    
+</body>
+<%-include("../partials/admindbfooter.ejs");%>

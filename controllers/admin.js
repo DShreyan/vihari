@@ -2,26 +2,37 @@ const usermodel = require('../models/user');
 const Tour=require('../models/tour');
 const Bus=require('../models/buses');
 const Place=require('../models/place');
+const admin=require('../models/admin');
 const bcrypt=require('bcryptjs');
 const path=require('path');
 const { BUSY } = require('sqlite3');
 const { log } = require('console');
+var nodemailer = require('nodemailer');
+const { title } = require('process');
+
+var mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'srikar.a21@iiits.in',
+        pass: 'dnjnylikiujnzmrs'
+    }
+});
 exports.getAllUsers=(req,res)=>{
     usermodel.find({})
     .then((result)=>{
-    res.render('allusers',{title:'User Details',users:result});
+    res.render('admin/allusers',{title:'User Details',users:result});
 })
 .catch((err)=>{
     console.log(err);
 })
 };
 exports.AddUser=(req,res)=>{
-        res.render('addusers',{title:'Add User'});
+        res.render('admin/addusers',{title:'Add User'});
 };
 exports.getAllTours=(req,res)=>{
     Tour.find({})
     .then((tours)=>{
-        res.render('alltours',{title:'Tour Details',tours:tours});
+        res.render('admin/alltours',{title:'Tour Details',tours:tours});
     })
     .catch((err)=>{
         console.log(err);
@@ -29,33 +40,33 @@ exports.getAllTours=(req,res)=>{
    
 };
 exports.AddTour=(req,res)=>{
-    res.render('addtour',{title:'Add Tour'});
+    res.render('admin/addtour',{title:'Add Tour'});
 };
 exports.getAllBuses=(req,res)=>{
     Bus.find({})
     .then((buses)=>{
-    res.render('allbuses',{title:'Bus Details',buses:buses});
+    res.render('admin/allbuses',{title:'Bus Details',buses:buses});
 })
 .catch((err)=>{
     console.log(err);
 })
 };
 exports.AddBus=(req,res)=>{
-    res.render('addbus',{title:'Add Bus'});
+    res.render('admin/addbus',{title:'Add Bus'});
 };
 exports.getSingletour=(req,res,next)=>{
     const id=req.params.id;
     Tour.findById(id)
     .populate('places')
     .then(tour=>{
-        res.render('tourdetails',{data:tour,places:tour.places});
+        res.render('admin/tourdetails',{data:tour,places:tour.places});
     })
     .catch(err => console.log(err));
 };
 
 exports.getAddPlace=(req,res)=>{
     const id=req.params.id;
-    res.render('addplaces',{title:'Add Place',id:id});
+    res.render('admin/addplaces',{title:'Add Place',id:id});
 };
 
 exports.postAddPlace=(req,res)=>{
@@ -190,10 +201,41 @@ exports.EditBusDetails=(req,res)=>{
     var id=req.params.id;
     Bus.findById(id)
     .then((bus)=>{
-        res.render('editbus',{title:'Edit Bus',bus:bus});
+        res.render('admin/editbus',{title:'Edit Bus',bus:bus});
     })
     
 }
+
+exports.getannouncements=(req,res)=>{
+   
+    res.render('announcements',{title:'Announcements'});
+};
+    exports.sendannouncements = (req, res, next) => {
+        const { subject, message } = req.body;
+        usermodel.find()
+            .then((users) => {
+                const emailList = users.map(user => user.email);
+                const mailOptions = {
+                    from: 'srikar.a21@iiits.in',
+                    to: emailList.join(','),
+                    subject: subject,
+                    text: message
+                };
+                mailTransporter.sendMail(mailOptions)
+                    .then((info) => {
+                        console.log(`Email sent: ${info.response}`);
+                        res.redirect('/admindb/allusers');
+                    })
+                    .catch((error) => {
+                        console.log(`Error occurred while sending email: ${error}`);
+                        res.redirect('/admindb/announcements');
+                    });
+            })
+            .catch((error) => {
+                console.log(`Error occurred while finding users: ${error}`);
+                res.redirect('/admindb/announcements');
+            });
+      };
 
 exports.postEditBus=(req,res)=>{
     const id=req.params.id;
@@ -235,10 +277,13 @@ exports.postEditTour=(req,res)=>{
     const tid=req.params.tourid;
     const tname=req.body.tname;
     const tprice=req.body.tprice;
+    // const image=req.file;
+    // const DispImageurl=image.path;
     Tour.findById(tid)
     .then((tour)=>{
+        // tour.DispImageurl=DispImageurl;
         tour.tname=tname;
-        tour.tprice=tprice;
+        tour.tprice=tprice; 
         return tour.save();
     })
     .then((tour)=>{
@@ -332,4 +377,13 @@ exports.postEditPlace=(req,res)=>{
         res.redirect(`/admindb/opentour/${tid}`);
     })
 
+}
+
+exports.getAdminProfile=(req,res)=>{
+    admin.find({email:'admin@gmail.com'})
+    .then((admin)=>{
+        console.log(admin);
+        res.render('admin/adminprofile',{title:'Admin Profile',admin : admin});
+    })
+    
 }

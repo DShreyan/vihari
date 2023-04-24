@@ -116,8 +116,15 @@ div.bus-customize{
 div.bus-i-n{
     display: block;
 }
+ul#buses-list{
+    list-style: none;
+}
+li.bus-details{
+    display:block;
+}
 div.bus-item{
-    border:1px solid;
+    
+    border: 1px solid;
     display: grid;
     grid-template-columns: repeat(6,1fr); 
     grid-template-rows: repeat(1,1fr);
@@ -140,10 +147,10 @@ div.duration{
 }
 span.departure{
     font-size:larger;
-    /* font-weight:bolder; */
+    font-weight:bolder;
     margin:auto 0;
   display: block;
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  }
 
  span.Arrival{
@@ -223,7 +230,7 @@ a.nav-icon:hover{
     transition-property:font-size,font-weight;
     font-size:larger;
     font-weight: 500;
-    transition-duration: 50ms;
+    transition-duration: 150ms;
 
  }
  a.bus-home:hover{
@@ -233,9 +240,9 @@ a.nav-icon:hover{
     transition-duration: 100ms;
  }
 
- div.bus-details:hover{
+ div.bus-item:hover{
     transition-property: box-shadow;
-    transition-duration: 100ms;
+    transition-duration: 200ms;
     box-shadow: 3px 3px 10px rgb(95, 89, 89);
  }
  /* Responsive */

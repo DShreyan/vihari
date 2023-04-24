@@ -11,24 +11,16 @@
                             <div class="col-sm-10 col-lg-8">
                                 <div class="section-travel">
                                     <div class="search-form-container">
-                                        <form action="#" class="form search-form" method="post">
-                                            <div class="search-form__elements">
-                                                <select name="from" id="select-from" required
-                                                    style="background-color: aliceblue;">
-                                                    <option value="">From</option>
-                                                    <option value="koyambedu">Koyambedu</option>
-                                                </select>
-                                                <select name="to" id="select-to" required
-                                                    style="background-color: aliceblue;">
-                                                    <option value="">To</option>
-                                                    <option value="bangalore">Bangalore</option>
-                                                </select>
-                                                <input name="date" type="date" placeholder="Departure" required
-                                                    style="background-color: aliceblue; width: 150px;">
-                                            </div>
-                                            <a href="/searchbuses"><button class="btn btn-travel"
-                                                    type="button">Search</button></a>
-                                        </form>
+                                      <form action="/searchbuses" class="form search-form" method="post">
+                                        <div class="search-form__elements">
+                                            <input type="text" name="srcname" style="background-color: aliceblue;">
+                                            <input type="text" name="destname" style="background-color: aliceblue;">
+                                            <input name="date" type="date" placeholder="Departure" required
+                                                style="background-color: aliceblue; width: 150px;">
+                                        </div>
+                                        <a href=""><button class="btn btn-travel"
+                                                type="submit">Search</button></a>
+                                      </form>
                                     </div>
                                 </div>
                                 <div class="heading">
@@ -148,12 +140,12 @@
                 </div><!--/.gallery-header-->
                 <div class="packages-content">
                     <div class="row all-tours">
-
+                   <% for(let i=0;i<3;i++){%>
                         <div class="col-md-4 col-sm-6">
                             <div class="single-package-item">
-                                <img src="../images/agra.jpg" alt="package-place">
+                                <img src="/<%=tours[i].DispImageurl%>" alt="package-place">
                                 <div class="single-package-item-txt">
-                                    <h3>Agra <span class="pull-right">₹499</span></h3>
+                                  <h3><a href="/tourplaces/<%=tours[i]._id%>"><%=tours[i].tname%></a> <span class="pull-right"><i class="fa-solid fa-indian-rupee-sign "></i><%=tours[i].tprice%></span></h3>
                                     <div class="packages-para">
                                         <p>
                                             <span>
@@ -179,7 +171,7 @@
                                         </p>
                                     </div><!--/.packages-review-->
                                     <div class="about-btn">
-                                        <a href="/Tour1"> <button class="about-view packages-btn">
+                                        <a href="/payment"> <button class="about-view packages-btn">
                                                 book now
                                             </button></a>
                                     </div><!--/.about-btn-->
@@ -187,84 +179,10 @@
                             </div><!--/.single-package-item-->
 
                         </div><!--/.col-->
+                      <%}%>
 
-                        <div class="col-md-4 col-sm-6">
-                            <div class="single-package-item">
-                                <img src="../images/hyderabad1.jpg" alt="package-place">
-                                <div class="single-package-item-txt">
-                                    <h3>Hyderabad <span class="pull-right">₹1499</span></h3>
-                                    <div class="packages-para">
-                                        <p>
-                                            <span>
-                                                <i class="fa fa-angle-right"></i> 6 Days 7 nights
-                                            </span>
-                                            <i class="fa fa-angle-right"></i> 5 star accomodation
-                                        </p>
-                                        <p>
-                                            <span>
-                                                <i class="fa fa-angle-right"></i> transportation
-                                            </span>
-                                            <i class="fa fa-angle-right"></i> Free food
-                                        </p>
-                                    </div><!--/.packages-para-->
-                                    <div class="packages-review">
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span>344 reviews</span>
-                                        </p>
-                                    </div><!--/.packages-review-->
-                                    <div class="about-btn">
-                                        <a href="/Tour2"><button class="about-view packages-btn">
-                                                book now
-                                            </button></a>
-                                    </div><!--/.about-btn-->
-                                </div><!--/.single-package-item-txt-->
-                            </div><!--/.single-package-item-->
+                        
 
-                        </div><!--/.col-->
-
-                        <div class="col-md-4 col-sm-6">
-                            <div class="single-package-item">
-                                <img src="../images/delhi1.jpg" alt="package-place">
-                                <div class="single-package-item-txt">
-                                    <h3>Delhi <span class="pull-right">₹1199</span></h3>
-                                    <div class="packages-para">
-                                        <p>
-                                            <span>
-                                                <i class="fa fa-angle-right"></i> 5 Days 6 nights
-                                            </span>
-                                            <i class="fa fa-angle-right"></i> 5 star accomodation
-                                        </p>
-                                        <p>
-                                            <span>
-                                                <i class="fa fa-angle-right"></i> transportation
-                                            </span>
-                                            <i class="fa fa-angle-right"></i> food facilities
-                                        </p>
-                                    </div><!--/.packages-para-->
-                                    <div class="packages-review">
-                                        <p>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <span>544 reviews</span>
-                                        </p>
-                                    </div><!--/.packages-review-->
-                                    <div class="about-btn">
-                                        <a href="/Tour3"> <button class="about-view packages-btn">
-                                                book now
-                                            </button></a>
-                                    </div><!--/.about-btn-->
-                                </div><!--/.single-package-item-txt-->
-                            </div><!--/.single-package-item-->
-
-                        </div><!--/.col-->
                     </div><!--/.row-->
                 </div><!--/.packages-content-->
             </div><!--/.container-->

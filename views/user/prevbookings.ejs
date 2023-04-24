@@ -1,0 +1,44 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/signedinnav.ejs"); %>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Bus Image</th>
+        <th scope="col">Travel Agency</th>
+        <th scope="col">Boarding Station</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Fare</th>
+        <th scope="col">Number of passengers</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%tickets.forEach((ticket,i)=>{%>
+    
+      <tr>
+        <td><%= i+1%></td>
+        <td scope="row" style="max-width: 100px;">
+                <div><img width="200px" src="/<%=ticket.bus.Imageurl%>" alt=""></div>
+       </td>
+        <td><%=ticket.bus.trname%></td>
+        <td style="max-width: 50px;"><%=ticket.bus.srcname%></td>
+        <td><%=ticket.bus.destname%></td>
+        <td><%= parseInt(ticket.bus.tktprice)* parseInt(ticket.tickets.length) %></td>
+        <td><%=ticket.tickets.length%></td>
+        <td>
+          <div style="display: flex; flex-direction:column">
+              <div>
+                <a href="/cancel/tickets/<%=ticket._id%>"><button style="width: 50%; top:0;"  class="btn btn-lg  btn-outline-danger">Cancel ticket</button></a>
+              </div>
+              
+          </div>
+          </td>
+      </tr>
+      <%})%>
+      
+    </tbody>
+  </table>
+
+  
+<%- include("../partials/footer.ejs"); %>

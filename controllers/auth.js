@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const Admin = require("../models/admin");
 exports.getsignup=(req,res)=>{
     res.render('signup');
 }
@@ -43,35 +44,50 @@ exports.postLogin=(req,res)=>{
     const lname=req.body.lname;
     const email=req.body.email;
     const psd=req.body.psd;
-   User.findOne({email:email}).then((user)=>{
-    if(!user){
-        return res.redirect('/login');
-    }
-    bcrypt
-      .compare(psd, user.password)
-      .then((doMatch) => {
-        if (doMatch) {
-          req.session.isLoggedIn = true;
-          req.session.user = user;
-         
-          return req.session.save((err) => {
-            if (err) {
-              console.log(err);
+    if(email=="admin@gmail.com"){
+      Admin.findOne({ email: email }).then((admin) => {
+       
+            if (psd=='admin@123') {
+              req.session.isLoggedIn = true;
+              req.session.user = admin;
+              res.redirect("/admindb");
+            } else {
+              // req.flash("error", "Password not matching");
+              res.redirect("/login");
             }
-            res.redirect("/userhome");
-          });
-        }
-        res.redirect("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        res.redirect("/");
+          
       });
-  });
-
+    }else{
+      User.findOne({email:email}).then((user)=>{
+        if(!user){
+            return res.redirect('/login');
+        }
+        bcrypt
+          .compare(psd, user.password)
+          .then((doMatch) => {
+            if (doMatch) {
+              req.session.isLoggedIn = true;
+              req.session.user = user;
+             
+              return req.session.save((err) => {
+                if (err) {
+                  console.log(err);
+                }
+                res.redirect("/userhome");
+              });
+            }
+            res.redirect("/");
+          })
+          .catch((err) => {
+            console.log(err);
+            res.redirect("/login");
+          });
+      });
+    }
   
-
 }
+
+
 
 exports.Logout=(req,res)=>{
   req.session.destroy((err)=>{

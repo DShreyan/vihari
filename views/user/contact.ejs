@@ -1,0 +1,94 @@
+<%- include("../partials/header.ejs"); %>
+<%- include("../partials/signedinnav.ejs"); %>
+<div class="contact-body">
+    <div class="contactus">
+        <div class="gallary-header text-center">
+            <h2>
+                Contact Us
+            </h2>
+        </div>
+        <div class="box contact-box">
+            <div class="container form1" style="background-color: rgb(160, 216, 225);">
+                <h4>Send a message</h4>
+                <form id="contact-form" method="post">
+                    <div class="form form2">
+                        <div class="row" >
+                            <div class="contact-input">
+                                <input type="text" placeholder="First Name" style="background-color: rgba(255, 255, 255, 0.925);color: black;border-radius: 2px;" id="f-name">
+                                <span class="invalid-form" id="invalid-fname"></span>
+                            </div>
+                            <div class="contact-input">
+                                <input type="text" placeholder="Last Name" style="background-color: rgba(255, 255, 255, 0.925);color: black;border-radius: 2px;" id="lname">
+                                <span class="invalid-form" id="invalid-lname"></span>
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="contact-input">
+                                <input type="text" placeholder="Mobile Number" style="background-color: rgba(255, 255, 255, 0.925);color: black;border-radius: 2px;" id="mnum">
+                                <span class="invalid-form" id="invalid-mnum"></span>
+                            </div>
+                            <div class="contact-input">
+                                <input type="text" placeholder="Email" style="background-color: rgba(255, 255, 255, 0.925);color: black;border-radius: 2px;" id="email">
+                                <span class="invalid-form" id="invalid-email"></span>
+                            </div>
+                        </div>
+                        <div class="row2">
+                            <div class="contact-input">
+                                <textarea placeholder="Enter the message" style="background-color: rgba(255, 255, 255, 0.925);color: black;border-radius: 2px;" id="msg"></textarea>
+                                <span class="invalid-form" id="invalid-msg"></span>
+                            </div> 
+                        </div>
+                        <div class="row2">
+                            <div class="contact-input">
+                                <input style="background-color: #29d9d5;color: white;"class="submt" type="submit" placeholder="submit">
+                            </div> 
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container info1" style="background-color: rgb(160, 216, 225);">
+                <h4>Contact info</h4>
+                <div class="info">
+                    <div>
+                        <span><ion-icon name="locate"></ion-icon></ion-icon></span>
+                        <p>Indian Institute Of Information Technology Sricity</p>
+                    </div>
+                    <div>
+                        <span><ion-icon name="call"></ion-icon></span>
+                        <a href="#">9998989989</a>
+                    </div>
+                    <div>
+                        <span><ion-icon name="mail"></ion-icon></span>
+                        <a href="#">vihari@iiits.in</a>
+                    </div>
+                    <div>
+                        <span><ion-icon name="logo-facebook"></ion-icon></span>
+                        <a href="https://www.facebook.com">Facebook</a>
+                    </div>
+                    <div>
+                        <span><ion-icon name="logo-linkedin"></ion-icon></span>
+                        <a href="https://in.linkedin.com">LinkedIn</a>
+                    </div>
+                    <div>
+                        <span><ion-icon name="logo-twitter"></ion-icon></span>
+                        <a href="https://www.twitter.com">Twitter</a>
+                    </div>
+                    <img src="../images/contact.svg" style="object-fit: cover;">
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        var form=document.getElementById('contact-form');
+        form.addEventListener('submit',function (e){
+        if(FnameValidation()==false || LnameValidation()==false || pnumvalidation()==false || EmailValidation()==false ||  msgvalidation()==false){
+          e.preventDefault();  
+        }
+        else {
+          console.log("Submitted successfull");
+        }
+        });
+      </script>
+</div>
+<%- include('../partials/footer.ejs');%>

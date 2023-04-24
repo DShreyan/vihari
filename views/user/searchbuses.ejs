@@ -1,0 +1,225 @@
+<%- include("../partials/header.ejs"); %>
+
+
+<div class="buses">
+    <nav style="color:white" class="searchnav bus-nav navbar container-fluid">
+     <div class="bus-nav-item-1">
+        <a href="/user/userhome" class="bus-home">HOME</a> 
+     </div>
+     <div class="bus-nav-item-2">
+      <input type="text" name="bus" class="search-box" id="search-bus" placeholder="Enter bus name" onkeyup="search()">
+       <a href="" class="search-icon"><span class="search-icon"><i class="fa-solid fa-magnifying-glass "></i></span></a>
+  </div>
+     <div class="bus-nav-3">
+          <a href="#" class=" nav-icon"data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-filter fa-lg"></i></a>   
+     </div>
+     <div class="bus-nav-4">
+         <a href="#" class=" nav-icon"><i class="fa-solid fa-user fa-lg"></i></a>   
+        </div> 
+    </nav>
+    <div class="travel-details">
+      <%for(var i=0;i<1;i++){%>
+      <%if(Buses.length>0){%>
+         <div class="route">
+           <span class="start"><%=Buses[0].srcname%> </span>
+           <i class="fa-solid fa-arrow-right"></i>
+           <span class="dest"> <%=Buses[0].destname%> </span>
+         </div>
+         <%}%>
+      <%}%>
+         <div class="date">
+            <span class="prev "><i class="fa-solid fa-angle-left fa-2x"></i></span>
+          <span class="DOJ"><%=date.toISOString().slice(0,10)%></span>
+            <span class="next" style="margin-left: 20px;"><i class="fa-solid fa-angle-right fa-2x "></i></span>
+         </div>
+         <div class="Travel-submit">
+            <form action="/userhome" method="get">
+            <input type="submit" value="Modify" class="btn btn-primary modify"> 
+         </form>
+         </div>
+     </div>
+     </div>
+        <hr>
+        <div class="row-bus bus-customize">
+        <div class="bus-counts" >
+        <span style="font-weight: 600;margin-left:5%" id="bus-count"><%=Buses.length%></span> <span style="font-weight: 600;"> BUSES</span> <span>found</span>
+       </div>
+       <div class="bd-1">
+          Departure
+       </div>
+       <div class="bd-2">
+          Duration
+       </div>
+       <div class="bd-3">
+         Arrival 
+       </div>
+       <div class="bd-4">
+          Fare
+       </div>
+    </div>
+        <hr>
+        <!-- start -->
+        <% if(Buses.length>0){%>
+        <% Buses.forEach((bus)=>{%>
+      
+        <div class="container-fluid bus-details">
+       <div class="bus-item">
+          <div class="bus-item-item bus-i-n">
+             <img src="/<%=bus.Imageurl%>" class="bus-img">
+             <span class="bus-name"><%=bus.trname%></span>
+          </div>
+          <div class="bus-item-item ">
+           <span class="departure timings"><%=bus.deptime%></span>
+           <span class="depart"><%=bus.srcname%></span>  
+          </div>
+          <div class="bus-item-item duration">
+           <span class="duration"><b><%=bus.durtime%></b></span>
+          </div>
+          <div class="bus-item-item">
+             <span class="Arrival timings"><%=bus.arrtime%></span>
+             <span class="depart"><%=bus.destname%></span>
+            </div>
+          <div class="bus-item-item">
+             <span class="rupees Arrival"><i class="fa-solid fa-indian-rupee-sign "></i></span>
+             <span class="price Arrival"><%=bus.tktprice%></span>
+          </div> 
+          <div class="bus-item-item">
+            <a href="/layout/<%=bus._id%>"><input type="submit" value="BOOK SEATS" class="btn btn-primary book-seats"></a> 
+          </div>
+          <div class="bus-item-item">
+            <span class="bus-type"><%=bus.btype%></span> 
+          </div> 
+       </div>
+     </div> 
+     <%})%>
+        <%}else{%>
+         <h2>No Buses Found</h2>
+        <%}%>
+ 
+     <!-- end -->
+    
+    <div class="filters">
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+         <div class="modal-dialog">
+           <div class="modal-content"> 
+             <div class="modal-header">
+               <h1 class="modal-title fs-5" id="staticBackdropLabel">Filters</h1>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+               <form action="#">
+                  <h5>Bus type</h5>
+                 <ul class="bus-types">
+                 <li class="type-class"> <input type="radio" name="AC" id="AC" class="filter-item radio">AC</li>
+                 <li class="type-class"> <input type="radio" name="NON-AC" id="NON-AC" class="filter-item radio">NON-AC</li>
+               </ul>
+               <h5>Sort by</h5>
+               <ul class="departure-time">
+                  <li class="type-sort"> <input type="radio" name="Fare" id="before-6" class="radio">Fare</li>
+                  <li class="type-sort"> <input type="radio" name="Duration" id="6to12" class="radio">Duration time</li>
+               </ul>
+               <h5>Travel agency</h5>
+               <ul class="bus-types">
+               <li class="type-name"> <input type="radio" name="APSRTC" id="APSRTC" class="filter-name radio">APSRTC</li>
+               <li class="type-name"> <input type="radio" name="TSRTC" id="TSRTC" class="filter-name radio">TSRTC</li>
+               <li class="type-name"> <input type="radio" name="KSRTC" id="KSRTC" class="filter-name radio">KSRTC</li>
+               <li class="type-name"> <input type="radio" name="TNSTC" id="TNSTC" class="filter-name radio">TNSTC</li>
+               </ul>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-secondary clear-all" onclick="clearAll()">Clear all</button>
+               <button type="button" class="btn btn-primary apply-filters"data-bs-dismiss="modal" onclick="filters();filtersName()">Apply</button>
+             </div>
+           </div>
+         </div>
+       </div>
+   </div>
+   <script>
+      function clearAll(){
+        var list=document.getElementsByClassName("radio");
+        for( i=0;i<list.length; i++){
+         if(list[i].checked==true){
+            list[i].checked=false;
+         }
+        } 
+      }
+   function search(){
+   var searchbar=document.getElementById('search-bus');
+    var filter=searchbar.value.toUpperCase();
+   var list = document.getElementsByClassName("bus-details");
+   var k=0;
+   for(i=0;i<list.length;i++){
+     var trname = list[i].getElementsByClassName("bus-name")[0].innerHTML.toUpperCase();
+     if(trname.indexOf(filter)>-1){
+      list[i].style.display="block";
+      k++;
+     }
+     else {
+      list[i].style.display="none";
+     }
+   }
+   document.getElementById('bus-count').innerHTML=k;
+   if(k==1){
+      document.getElementById('noofbuses').innerHTML="BUS";
+   }
+   else {
+      document.getElementById('noofbuses').innerHTML="BUSES";
+   }
+}
+
+
+var k=0;
+var list=[];
+      function filters(){
+         var filterlist=document.getElementsByClassName('filter-item');
+         var buses=document.getElementsByClassName('bus-details');
+         var filters = document.getElementsByClassName('type-class');
+         for(i=0;i<filterlist.length;i++){
+           if(filterlist[i].checked==true){
+           for(j=0;j<buses.length;j++){
+             var bustype= buses[j].getElementsByClassName('bus-type')[0].innerText.toUpperCase();
+             console.log(bustype);
+            
+              var filter= filters[i].innerText.toUpperCase();
+              console.log(filter);
+             if(bustype==filter){
+              buses[j].style.display="block";
+              k++;
+             }
+             else {
+               buses[j].style.display="none";
+             }
+             }
+           }
+           }
+ document.getElementById('bus-count').innerHTML=k;
+        }
+
+function filtersName(){
+   k=0;
+     var filtername=document.getElementsByClassName('filter-name');
+     var filters=document.getElementsByClassName('type-name');
+     var buses=document.getElementsByClassName('bus-details');
+     for(i=0;i<filterName.length();i++){
+         if(filterName[i].checked==true){
+     for(j=0;j<buses.length;j++){
+       var busname=buses[j].getElementsByClassName('bus-name')[0].innerText.toUpperCase();
+       var filtname=filterName[j].innerText.toUpperCase();
+       if(filtname==busname){
+         buses[j].style.display="block";
+         k++;
+       }
+       else {
+          buses[j].style.display="none";
+       }
+     }
+    }
+    document.getElementById('bus-count').innerHTML=k; 
+     } 
+}
+
+   </script>
+
+
+
+<%- include('../partials/footer.ejs');%>

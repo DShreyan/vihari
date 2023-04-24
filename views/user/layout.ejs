@@ -1,0 +1,202 @@
+<%- include("../partials/header.ejs") %>
+
+<nav class="navbar layout-nav">
+    <div class="container-fluid">
+      <div class="row layout-navlist">
+         <div class="col-md-3 select-seat">Select&nbsp;&nbsp;seats</div>
+         <div class="col-md-4 layout-home"><a href="/searchbuses" class="layout-link">HOME</a></div>
+         <div class="col-md-1 layout-profile"><a href="/login" class="layout-link"><i class="fa-solid fa-user fa-lg"></i></a></div>
+      </div>
+    </div>  
+  </nav>
+  <div class="container bus-details-container">
+    <div class="row bus-details-row">
+      <div class="col-md-6">
+          <img src="/<%=bus.Imageurl%>" style="width: 40%">
+      </div>
+      <span class="col-md-6 bus-layout-name"><%=bus.trname%></span>
+      <span class="col-md-6 bus-route">
+      <span class="bus-src"><%=bus.srcname%> </span>
+       to
+      <span class="bus-dest"><%=bus.destname%></span></span>
+      <span  style="font-size: smaller;color:rgb(134, 61, 61)" class="rating">
+          <i class="fa-solid fa-star fa-sm"></i>
+          <i class="fa-solid fa-star fa-sm"></i>
+          <i class="fa-solid fa-star fa-sm"></i>
+          <i class="fa-solid fa-star fa-sm"></i>
+          4.0 </span>
+    </div>
+    <hr>
+
+
+    <div class="row">
+      <div class="col-md-6">
+      <span style="font-weight:lighter">Wifi</span> <br> Accesss in the bus    
+      </div>
+      <div class="col-md-6">
+          <span style="font-weight:lighter"><%=bus.btype%></span> <br>bus         
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+      <span style="font-weight:lighter">Dinner/lunch</span> <br> Yes     
+      </div>
+      <div class="col-md-6">
+          <span style="font-weight:lighter">Safety</span> <br> Sanitized and cheked before every trip         
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+      <span style="font-weight:lighter">Essentials</span> <br> Pillow,bed sheets     
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <!-- Bus layout -->
+  
+  <!-- Bus layout -->
+  <div class="container bus-layout-container">
+    <h2>Select you seats</h2>
+    <span  class="steering"><svg fill="#000000" height="50px" width="50px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M437.02,74.981C388.668,26.628,324.38,0,256,0S123.333,26.628,74.98,74.981C26.628,123.333,0,187.62,0,256 s26.628,132.667,74.98,181.019C123.333,485.372,187.62,512,256,512s132.667-26.628,181.02-74.981 C485.372,388.668,512,324.38,512,256S485.372,123.333,437.02,74.981z M256,57.263c100.782,0,184.276,75.409,197.04,172.765 L329.849,218.03c-13.813-26.755-41.72-45.102-73.849-45.102s-60.036,18.347-73.849,45.102L58.96,230.028 C71.724,132.672,155.218,57.263,256,57.263z M58.889,281.375l121.731,9.484c7.69,16.55,20.669,30.166,36.76,38.655l7.978,122.859 C138.513,438.875,70.099,368.943,58.889,281.375z M256,281.809c-14.232,0-25.809-11.578-25.809-25.809S241.77,230.191,256,230.191 S281.809,241.77,281.809,256S270.232,281.809,256,281.809z M286.644,452.373l7.978-122.859 c16.091-8.488,29.069-22.105,36.76-38.655l121.731-9.484C441.901,368.943,373.487,438.875,286.644,452.373z"></path> </g> </g> </g></svg></span>
+   
+    <% for(let index = 1; index <= 10; index++ ) { %>
+    <ul class=" seats">
+    <li class="seat col-md-2">
+        <input type="checkbox" name="<%=index%>A" id="<%=index%>A" class="seat-check"/>
+        <label for="<%=index%>A" class="seat-label"><%=index%>A</label>
+      </li>
+  
+      <li class="seat col-md-2 seat-left">
+        <input type="checkbox" name="<%=index%>B" id="<%=index%>B" class="seat-check"/>
+        <label for="<%=index%>B" class="seat-label"><%=index%>B</label>
+      </li>
+      <li class="seat col-md-2 ">
+        <input type="checkbox" name="<%=index%>C" id="<%=index%>C" class="seat-check"/>
+        <label for="<%=index%>C" class="seat-label"><%=index%>C</label>
+      </li>
+      <li class="seat col-md-2 seat-right">
+        <input type="checkbox" name="<%=index%>D" id="<%=index%>D" class="seat-check"/>
+        <label for="<%=index%>D"  class="seat-label"><%=index%>D</label>
+      </li>
+    </ul>
+    <% } %>
+  </div>
+
+  <input type="submit" value="PROCEED TO BOOK" class="btn btn-primary btn-layout-submit" data-bs-toggle="modal" data-bs-target="#PassengerDetails" id="book-seats" onclick="findseats();price();">
+  <!-- Scrollable modal -->
+  <div class="modal fade" id="PassengerDetails" tabindex="-1" aria-labelledby="PassengerDetails" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+  <div class="modal-content">
+    <div class="modal-header" style=" background-color: #7745d4;color:aliceblue">
+      <h1 class="modal-title " id="ModalLabel" style="margin-left:35%;font-size:x-large;font-weight:600;color:aliceblue">Passenger Details</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    <form action="/passengerDetails" id="Pass-details" method="post">
+    <div class="container-fluid layout-modal-title">
+      <span class="modal-title-icon"><i class="fa-regular fa-user "></i></span>  
+      <span style="font-size:larger; font-weight:600;">Passenger Information</span>
+    </div>
+  
+     <div id="passenger-list">
+    </div>
+        <div class="container-fluid layout-modal-title">
+          <span class="modal-title-icon"><i class="fa-regular fa-envelope"></i></span>     
+     <span style="font-size:larger; font-weight:600">Contact Information</span>
+       </div>
+     <div class="container modal-passenger">
+      <label for="pass-email">Email ID </label><br>
+        <input type="email" name="" id="pass-email" placeholder="Email ID" style="width:100%">
+        <br><br>
+      <label for="pass-phone">Phone</label><br>
+      <input type="text" id="pass-phone" placeholder="Phone" style="width:100%;">
+      <br>
+     
+      <input type="hidden" name="BusId" value="<%=bus._id%>">
+      
+      
+     </div>
+     <span style="font-size: small;font-weight:lighter">By clicking on proceed,I agree that I have read and understood the <a href="#" style="text-decoration: none;">TnCs</a> and the <a href="#" style="text-decoration: none;">Privacy Policy</a></span>
+      <span class="ticket-price" style="font-weight: 600;font-size:large;margin-bottom: -40px" id="total-price">TOTAL AMOUNT : INR 1257</span>
+      <input type="submit"  value="PROCEED TO PAY" class="btn btn-primary layout-modal-submit" style="border-radius:0px;width:30%">
+    </form>
+    </div>
+    <div class=" row modal-footer">
+     
+  
+    </div>
+
+  </div>
+  </div>
+  </div>
+  
+  <script>
+  const phoneInputField = document.querySelector("#pass-phone");
+  const phoneInput = window.intlTelInput(phoneInputField, {
+    utilsScript:
+      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  });
+  function process(event) {
+    event.preventDefault();
+   
+    const phoneNumber = phoneInput.getNumber();
+   
+    info.style.display = "";
+    info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
+   }
+  
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <script>
+    let checked=[];
+    function findseats(){
+    checked=[];
+     var check = document.getElementsByClassName('seat-check');
+     var seat=document.getElementById('seats');
+     for(i=0;i<check.length;i++){
+      if(check[i].checked==true){
+       checked.push(check[i]);
+      }
+     }
+     let k=checked.length;
+     let busp='<%=bus.tktprice%>'
+     var i=1;
+     document.getElementById('passenger-list').innerHTML=checked.map((check) =>`
+  
+     <div class="container modal-passenger">
+      <span>Passenger ${i++}</span> | Seat ${check.name}
+      <input type="hidden" name="seat[${i}]" value="${check.name}" >
+      <input type="hidden" name="pricebus" value="${busp}*${k}">
+      <br>
+      <label for="Passenger-${i}">Name</label>
+      <input type="text" class="form-control pass-name" name="name[${i}]" placeholder="Name" id="Passenger-${i}">
+      <br>
+      <div class="row">
+      <div class="col-md-6">
+      Gender <br>
+      <input type="radio" name="Male" id="M"> Male
+      &nbsp;&nbsp;&nbsp;
+      <input type="radio" name="Female" id="F"> Female
+     </div>
+     <div class="col-md-6">
+       <label for="Age">Age</label><br>
+       <input type="text" name="age[${i}]" id="Age${i}" class="Age" placeholder="Age" style="height:60%; width:60%">
+     </div>
+   </div>
+      </div> 
+  
+     `).join('');
+    }
+    function price(){
+      var k =parseInt('<%= bus.tktprice%>')
+    
+      let price=k * checked.length;
+      document.getElementById('total-price').innerHTML='TOTAL AMOUNT : INR'+price;
+    }
+  </script>
+  
+  <%- include("../partials/footer.ejs"); %>
