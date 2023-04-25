@@ -200,16 +200,14 @@ function filtersName(){
      for(i=0;i<filtername.length;i++){
          if(filtername[i].checked==true){
     for(j=0;j<bus.length;j++){
-       var busname=bus[l].getElementsByClassName('bus-name')[0].innerText.toUpperCase();
+       var busname=bus[j].getElementsByClassName('bus-name')[0].innerText.toUpperCase();
        var filtname=filters[i].innerText.toUpperCase();
-       console.log(filtname);
-       console.log(busname)
        if(filtname==busname){
-         bus[l].style.display="block";
+         bus[j].style.display="block";
          k++;
        }
        else {
-          bus[l].style.display="none";
+          bus[j].style.display="none";
        }
      }
     }
