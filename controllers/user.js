@@ -77,7 +77,7 @@ exports.getPreviousBookings=(req,res)=>{
     Ticket.findByIdAndDelete(id)
     .then(()=>{
         console.log('Bus Ticket deleted');
-        res.redirect('/prevbookings');
+        res.redirect('/user/prevbookings');
     })
 }
 
