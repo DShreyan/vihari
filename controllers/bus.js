@@ -1,5 +1,5 @@
 const Bus = require('../models/buses');
-
+const Ticket = require('../models/ticket');
 exports.searchBuses = function(req, res) {
   const { srcname, destname, date } = req.body;
   const searchDate = new Date(date);
@@ -17,12 +17,14 @@ exports.searchBuses = function(req, res) {
 }
 
 exports.layout = function(req,res){
-    const id=req.params.id;
-    Bus.findById(id)
-    .then((bus)=>{
-        res.render('layout',{bus:bus});
+  const id=req.params.id;
+  Bus.findById(id)
+  .then((bus)=>{
+    Ticket.find({bus:id}).then(ticket=>{
+      res.render('layout',{bus:bus,ticket:ticket});
     })
-    .catch((err)=>{
-        console.log(err);
-    })
+  })
+  .catch((err)=>{
+      console.log(err);
+  })
 }

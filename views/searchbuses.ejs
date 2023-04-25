@@ -110,13 +110,13 @@
                <form action="#">
                   <h5>Bus type</h5>
                  <ul class="bus-types">
-                 <li class="type-class"> <input type="radio" name="AC" id="AC" class="filter-item radio">AC</li>
-                 <li class="type-class"> <input type="radio" name="NON-AC" id="NON-AC" class="filter-item radio">NON-AC</li>
+                 <li class="type-class"> <input type="radio" name="filter-type" id="AC" class="filter-item radio">AC</li>
+                 <li class="type-class"> <input type="radio" name="filter-type" id="NON-AC" class="filter-item radio">NON-AC</li>
                </ul>
                <h5>Sort by</h5>
                <ul class="departure-time">
-                  <li class="type-sort"> <input type="radio" name="Fare" id="before-6" class="radio">Fare</li>
-                  <li class="type-sort"> <input type="radio" name="Duration" id="6to12" class="radio">Duration time</li>
+                  <li class="type-sort"> <input type="radio" name="sort" id="Fare" class="radio sort-by">Fare</li>
+                  <li class="type-sort"> <input type="radio" name="sort" id="Duration-time" class="radio sort-by">Duration time</li>
                </ul>
                <h5>Travel agency</h5>
                <ul class="bus-types">
@@ -128,7 +128,7 @@
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary clear-all" onclick="clearAll()">Clear all</button>
-               <button type="button" class="btn btn-primary apply-filters"data-bs-dismiss="modal" onclick="filters();filtersName()">Apply</button>
+               <button type="button" class="btn btn-primary apply-filters"data-bs-dismiss="modal" onclick="filters();filtersName();sorts()">Apply</button>
              </div>
            </div>
          </div>
@@ -178,10 +178,7 @@ var list=[];
            if(filterlist[i].checked==true){
            for(j=0;j<buses.length;j++){
              var bustype= buses[j].getElementsByClassName('bus-type')[0].innerText.toUpperCase();
-             console.log(bustype);
-            
-              var filter= filters[i].innerText.toUpperCase();
-              console.log(filter);
+             var filter = filters[i].innerText.toUpperCase()
              if(bustype==filter){
               buses[j].style.display="block";
               k++;
@@ -199,18 +196,20 @@ function filtersName(){
    k=0;
      var filtername=document.getElementsByClassName('filter-name');
      var filters=document.getElementsByClassName('type-name');
-     var buses=document.getElementsByClassName('bus-details');
-     for(i=0;i<filterName.length();i++){
-         if(filterName[i].checked==true){
-     for(j=0;j<buses.length;j++){
-       var busname=buses[j].getElementsByClassName('bus-name')[0].innerText.toUpperCase();
-       var filtname=filterName[j].innerText.toUpperCase();
+     var bus=document.getElementsByClassName('bus-details');
+     for(i=0;i<filtername.length;i++){
+         if(filtername[i].checked==true){
+    for(j=0;j<bus.length;j++){
+       var busname=bus[l].getElementsByClassName('bus-name')[0].innerText.toUpperCase();
+       var filtname=filters[i].innerText.toUpperCase();
+       console.log(filtname);
+       console.log(busname)
        if(filtname==busname){
-         buses[j].style.display="block";
+         bus[l].style.display="block";
          k++;
        }
        else {
-          buses[j].style.display="none";
+          bus[l].style.display="none";
        }
      }
     }
@@ -218,8 +217,44 @@ function filtersName(){
      } 
 }
 
+ function sorts(){
+   var list=document.getElementsByClassName('sort-by')
+   var buses=document.getElementsByClassName('bus-details');
+   if(list[0].checked==true){
+      for(j=1;j<buses.length;j++){
+        for(l=0;l<j;l++) {
+         var sort1=parseFloat(buses[j].getElementsByClassName('price')[0].innerHTML)
+         var sort2=parseFloat(buses[l].getElementsByClassName('price')[0].innerHTML)
+        if(sort1<sort2){
+         parent=buses[l].parentElement
+         siblingl=buses[l].nextElementSibling===buses[j]? buses[l] : buses[l].nextElementSibling;
+         buses[l].parentElement.insertBefore(buses[j],buses[l]);
+         parent.insertBefore(buses[j],siblingl);
+        }
+        }
+      }
+  }
+  if(list[1].checked==true){
+   for(j=1;j<buses.length;j++){
+        for(l=0;l<j;l++) {
+         var sort1=parseFloat(buses[j].getElementsByClassName('duration')[0].innerText.substring(0,1))
+         var sort2=parseFloat(buses[l].getElementsByClassName('duration')[0].innerText.substring(0,1))
+        if(sort1<sort2){
+         parent=buses[l].parentElement
+         siblingl=buses[l].nextElementSibling===buses[j]? buses[l] : buses[l].nextElementSibling;
+         buses[l].parentElement.insertBefore(buses[j],buses[l]);
+         parent.insertBefore(buses[j],siblingl);
+        }
+        }
+      }
+  }
+}
+function clearFilters(){
+   var list=document.getElementsByClassName('radio');
+
+    for(i=0;i<list.length;i++){
+
+    }  
+}
    </script>
-
-
-
 <%- include('partials/footer.ejs');%>
