@@ -128,7 +128,7 @@
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary clear-all" onclick="clearAll()">Clear all</button>
-               <button type="button" class="btn btn-primary apply-filters"data-bs-dismiss="modal" onclick="filters();filtersName();sorts()">Apply</button>
+               <button type="button" class="btn btn-primary apply-filters"data-bs-dismiss="modal" onclick="clearFilters();filters();filtersName();sorts();">Apply</button>
              </div>
            </div>
          </div>
@@ -247,11 +247,32 @@ function filtersName(){
       }
   }
 }
-function clearFilters(){
+
+
+var DOJ = $('#DOJ').html();
+  $.ajax({
+    type: 'POST',
+    url: '/layout',
+    data: { DOJ: DOJ }
+  });
+   </script>
+
+   <script>
+      function clearFilters(){
    var list=document.getElementsByClassName('radio');
-
+     var buses=document.getElementsByClassName('bus-details');
+      let k=false;
     for(i=0;i<list.length;i++){
-
+     if(list[i].checked==true){
+        k=true;
+        break;
+     }
+    }
+    console.log(k);
+    if(k==false){
+     for(i=0;i<buses.length;i++){
+      buses[i].style.display="block"
+     } 
     }  
 }
    </script>
