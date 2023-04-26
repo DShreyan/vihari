@@ -184,6 +184,11 @@ ul.bus-types,ul.departure-time{
 li.type-class{
     margin: 15px;
 }
+div.bus-item-item.tktprice{
+   display: grid;
+   grid-template-columns: repeat(2,15px);
+
+}
 button.clear-all.btn.btn-secondary,button.apply-filters.btn.btn-primary{
     width: 20%;
     height: 35px;
