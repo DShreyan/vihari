@@ -7,5 +7,5 @@ router.get('/signup',authController.getsignup);
 router.post('/signup',authController.postsignup);
 router.post('/login',authController.postLogin);
 router.get('/logout',authController.Logout);
-
+router.post('/otp',authController.verifyEmail)
 module.exports=router;

@@ -2,6 +2,7 @@ const Bus=require('../models/buses');
 const Tour=require('../models/tour');
 const Ticket=require('../models/ticket');
 const User = require('../models/user');
+
 exports.getHomepage=(req,res)=>{
     Tour.find({})
     .then((tours)=>{
@@ -128,3 +129,4 @@ exports.getAllIndexPlaces=(req,res)=>{
         res.render('tourplaces',{data:data,places:data.places});
     })
 }
+
