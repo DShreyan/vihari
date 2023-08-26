@@ -63,7 +63,17 @@
                       <label for="floatingInputGroup1" class="label-login">Confirm Password</label>
                     </div>
                   </div>
-                  <input type="submit" value="SIGN UP" class="btn btn-primary btn-submit-login">
+
+                  <div class="input-group mb-3" id="otptag" style="display: none;">
+                    <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
+                    <div class="form-floating">
+                      <input type="number" name="OTP" class="form-control inputs" placeholder="Enter the OTP"
+                        fdprocessedid="2myzgp" id="otp">
+                      <span class="invalid-form" id="invalid-otp"></span>
+                      <label for="floatingInputGroup1" class="label-login">Enter your OTP</label>
+                    </div>
+                  </div>
+                  <input type="submit" value="Generate OTP" class="btn btn-primary btn-submit-login" id="signup">
 
                 </form>
                 <div class="row login-row signin">
@@ -76,15 +86,55 @@
       </div>
 
       <script>
+        
+        var otp;
+        var otptag =document.getElementById('otptag');
         var form=document.getElementById('signin-form');
-        form.addEventListener('submit',function (e){
+        form.addEventListener('submit',async function (e){
+        let submit = document.getElementById('signup')  
+        var OTP =document.getElementById('otp')
         if(FnameValidation()==false || LnameValidation()==false || EmailValidation()==false || PValidation()==false || CPValidation()==false){
           e.preventDefault();  
         }
+        else if(submit.value != 'SIGN UP') { 
+          var email = document.getElementById('email')
+          var  obj ={
+           otp :Math.random()*10000 | 0,
+           email:email.value
+          } 
+          otp =obj.otp;
+          submit.value='SIGN UP'
+          otptag.style.display='flex'
+          let post = JSON.stringify(obj)
+          fetch("http://localhost:5000/otp", {
+         method: 'post',
+         body: post,
+         headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    }})
+    .then((response) => {
+    return response.json()
+     })
+     .then((res) => {
+     res.text()
+     })
+     .catch((error) => {
+    console.log(error)
+    })
+
+          e.preventDefault()
+        }
+        else if(OTP.value != otp) {
+          document.getElementById('invalid-otp').innerHTML='Invalid OTP'
+          document.getElementById('invalid-otp').style.display='block'
+          e.preventDefault()
+        }
         else {
-          console.log("Sign Up successfull");
+          console.log('sign up successful')
         }
         });
+
       </script>
   </div>
 

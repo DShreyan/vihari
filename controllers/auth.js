@@ -1,18 +1,47 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const Admin = require("../models/admin");
+const nodemailer = require("nodemailer");
+
+var mailTransporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+      user: 'srikar.a21@iiits.in',
+      pass: 'dnjnylikiujnzmrs'
+  }
+});
+exports.verifyEmail =async(req,res)=>{
+  const mailOptions = {
+    from: 'srikar.a21@iiits.in',
+    to:  req.body.email,
+    subject: 'Verify your Email',
+    text: `your one time password for email verificsation :${req.body.otp}`
+};
+  const info = await mailTransporter.sendMail(mailOptions)
+  .then((info) => {
+    console.log(`Email sent to: ${req.body.email}`);
+})
+.catch((error) => {
+    console.log(`Error occurred while sending email: ${error}`);
+    res.render('signup');
+});
+}
+
 exports.getsignup=(req,res)=>{
     res.render('signup');
 }
 exports.getLogin=(req,res)=>{
   res.render('login');
 }
-exports.postsignup=(req,res)=>{
+exports.postsignup=async(req,res)=>{
     const fname=req.body.fname;
     const lname=req.body.lname;
     const email=req.body.email;
     const psd=req.body.psd;
+    
 
+
+  
     const user=new User();
     
     User.findOne({ email: email })
