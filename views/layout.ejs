@@ -143,16 +143,17 @@
   
      <div id="passenger-list">
     </div>
+    <input type="number" name='price' class="price" placeholder="price" value='<%=parseInt( bus.tktprice)%>' style="height:60%; width:60%;display:none">
         <div class="container-fluid layout-modal-title">
           <span class="modal-title-icon"><i class="fa-regular fa-envelope"></i></span>     
      <span style="font-size:larger; font-weight:600">Contact Information</span>
        </div>
      <div class="container modal-passenger">
       <label for="pass-email">Email ID </label><br>
-        <input type="email" name="" id="pass-email" placeholder="Email ID" style="width:100%">
+        <input type="email" name="email" id="pass-email" placeholder="Email ID" style="width:100%">
         <br><br>
       <label for="pass-phone">Phone</label><br>
-      <input type="text" id="pass-phone" placeholder="Phone" style="width:100%;">
+      <input type="text" id="pass-phone" name="phone" placeholder="Phone" style="width:100%;">
       <br>
      
       <input type="hidden" name="BusId" value="<%=bus._id%>">
@@ -225,6 +226,7 @@
      <div class="col-md-6">
        <label for="Age">Age</label><br>
        <input type="text" name="age[${i}]" id="Age${i}" class="Age" placeholder="Age" style="height:60%; width:60%">
+       <input type="number" name='price' class="price" placeholder="price" value='${parseInt('<%= bus.tktprice%>')}' style="height:60%; width:60%;display:none">
      </div>
    </div>
       </div> 
