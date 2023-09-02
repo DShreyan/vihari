@@ -2,6 +2,14 @@ const Bus=require('../models/buses');
 const Tour=require('../models/tour');
 const Ticket=require('../models/ticket');
 const User = require('../models/user');
+const Razorpay = require('razorpay')
+
+var instance = new Razorpay({
+	key_id: 'rzp_test_6KowFUd7r4c7DC',
+	key_secret: 'Ndp8bIejAFSDDtLdlWwS87EQ',
+  });
+
+ 
 
 exports.getHomepage=(req,res)=>{
     Tour.find({})
@@ -11,13 +19,28 @@ exports.getHomepage=(req,res)=>{
 }
 
 
-exports.postBookTicket=(req,res)=>{
+exports.postBookTicket=async(req,res)=>{
     const seats=req.body.seat;
     const names=req.body.name;
     const age=req.body.age;
-    const bus=req.body.BusId;
-    
+    const bus=req.body.BusId; 
     const userId=req.session.user._id;
+    const price =req.body.price;
+    const email =req.body.email;
+    const phone =req.body.phone;
+    console.log(price);
+    let fair =parseInt(price[0])*(price.length-1)*100;
+    var options = {
+        amount: fair,  // amount in the smallest currency unit
+        currency: "INR",
+        receipt: "order_rcptid_"+parseInt(Math.random()*100)
+      };
+      let order1;
+      
+     await instance.orders.create(options, function(err, order) {
+          order1 =order
+          console.log(order)
+      });      
 
     User.findOne({_id: userId})
         .then((user) => {
@@ -33,6 +56,9 @@ exports.postBookTicket=(req,res)=>{
                 }));
                 ticket.tickets = details;
                 user.tickets.push(ticket._id);
+                
+                console.log(fair +" "+price)
+
                 return Promise.all([ticket.save(), user.save()]);
             } else {
                 // User does not exist, create new user object with ticket details
@@ -46,11 +72,13 @@ exports.postBookTicket=(req,res)=>{
                 }));
                 ticket.tickets = details;
                 const newUser = new User({_id: userId, tickets: [ticket._id]});
+                console.log(fair + " "+ price)
                 return Promise.all([ticket.save(), newUser.save()]);
-            }
+            }  
         })
         .then(() => {
-            res.redirect('/payment');
+           
+            res.render('payment',{fair:fair,order:order1,email:email,Phone:phone});
         })
         .catch((err) => {
             console.log(err);

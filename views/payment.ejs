@@ -1,53 +1,74 @@
 <%- include("partials/header.ejs") %>
-    <%- include("partials/navbar.ejs") %>
-    <div class="gallary-header text-center">
-        <h2 style="margin-top: 40px;">
-            Payment
-        </h2>
+
+<style>
+
+</style>
+
+    <div class=" text-center container payment-con" id="payment" >
+        <h1 style="margin-top: 40px;">
+            Pay  with <img src="https://www.ecommerce-nation.com/wp-content/uploads/2019/02/razorpay.webp" alt="" height="130px">
+        </h1>
+            <div class="buttn text-center" style="width: 50%;">
+            <button class="button" style="font-style: italic;" id="rzp-button1" onclick="hst()" style="color: azure;" >Continue to Pay</button>
+        </div>  
     </div>
-        <div class="container payment-container">
-            <form action="/userhome" style="border-radius: 15px;">
+        <div class="container payment-con-form" id="payment-container" style="display: none;">
+            <form action="/userhome" id="Payment" style="border-radius: 15px;">
                 <div class="row" >
                     <div class="col">
-                        <!-- <h3 class="title">payment</h3> -->
-                        <div class="inputBox" style="display: flex;flex-direction: row;">
-                            <div>
-                                <span>cards accepted :</span>
-                                <img src="../images/cards.png" alt="">
-                            </div>
-                            <div class="icon-list" style="margin-left: 50px;">
-                                <span>upi :</span>
-                                <a href="https://pay.google.com"><img class="icon-img" src="../images/GPayNewLogo.png"></a>
-                                <a href="https://www.phonepe.com"><img class="icon-img" src="../images/phonepe.svg"></a>
-                                <a href="https://pay.amazon.com"><img class="icon-img" src="../images/amazonpay_new.png"></a>
-                            </div>
-                        </div>
-                        
-                        <div class="inputBox" >
-                            <span>name on card :</span>
-                            <input type="text" >
-                        </div>
-                        <div class="inputBox">
-                            <span>credit card number :</span>
-                            <input type="number">
-                        </div>
-                        <div class="inputBox">
-                            <span>exp month :</span>
-                            <input type="number">
-                        </div>
-                        <div class="flex">
-                            <div class="inputBox">
-                                <span>exp year :</span>
-                                <input type="number">
-                            </div>
-                            <div class="inputBox">
-                                <span>CVV :</span>
-                                <input type="number">
-                            </div>
+                        <h1  class="text-center" style="margin-top: 40px;">
+                            <img src="https://www.ecommerce-nation.com/wp-content/uploads/2019/02/razorpay.webp" alt="" height="130px"><br>
+                            Payment successfull
+                        </h1>
+
+                        <input type="submit" id="redirect" class="button btn btn-primary" value= 'GO TO HOME'>
+                       
                         </div>
                     </div>
+                </form>
                 </div>
-                <input type="submit" value="proceed to payment" class="submit-btn" style="border-radius: 5rem;">
-            </form>
-        </div>
-<%- include("partials/footer.ejs") %>
+                
+         
+ 
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+async function hst(e){
+    var options = {
+    "key": "rzp_test_6KowFUd7r4c7DC", // Enter the Key ID generated from the Dashboard
+    "amount": "<%-fair%>", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "VIHARI",
+    "description": "Test Transaction",
+    "order_id": "<%- order.id%>", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert('Payment successfull');
+    },
+    "prefill": {
+        "name" : '<%- email%>',
+        "email": "<%- email%>",
+        "contact": "<%- Phone%>"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3099cc"
+    }
+};
+    var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+     rzp1.open();
+     document.getElementById('payment-container').style.display='block'
+     document.getElementById('payment').style.display='none'
+   console.log('Payment Successful')
+}
+</script>
