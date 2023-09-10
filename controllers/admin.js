@@ -322,7 +322,8 @@ exports.Removeplace=(req,res)=>{
             console.log('Place Not found');
         }
         console.log('Place Removed ');
-        res.redirect(`/admindb/alltours`);
+        // res.redirect(`/admindb/alltours`);
+        res.status(200).send({success:true,msg:'Place removed succesfully'});
 
     })
     .catch((err)=>{
@@ -353,7 +354,9 @@ exports.Removeuser=(req,res)=>{
             console.log('User Not found');
         }
         console.log('User Removed ');
-        res.redirect(`/admindb/allusers`);
+        //res.redirect(`/admindb/allusers`);
+        res.status(200).send({success:true,msg:'User removed succesfully'});
+
     })
     .catch((err)=>{
         console.log(err);

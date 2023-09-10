@@ -58,28 +58,39 @@
 
   </div> 
   <%}%>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
-    $(document).on('click','.delete-bus-btn',function(){
-      const busId=$(this).data('bus-id');
-      console.log(busId);
-
-      $.ajax({
-        url:`/admindb/deletebus/${busId}`,
-        method:'POST',
-        success:(response)=>{
-          if(response.success===true){
-             $(`#bus-item-${busId}`).remove();
-             alert(response.msg);
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('delete-bus-btn')) {
+        const busId = event.target.getAttribute('data-bus-id');
+        console.log(busId);
+  
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `/admindb/deletebus/${busId}`, true);
+  
+        xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.success === true) {
+              const busItem = document.getElementById(`bus-item-${busId}`);
+              if (busItem) {
+                busItem.remove();
+              }
+              alert(response.msg);
+            }
+          } else {
+            console.error('Request failed with status', xhr.status);
           }
-        },
-        error:(response)=>{
-          console.error(response);
-        },
-      })
-    })
+        };
+  
+        xhr.onerror = function () {
+          console.error('Request failed');
+        };
+  
+        xhr.send();
+      }
+    });
   </script>
-
+  
   <%- include("../partials/admindbfooter.ejs"); %>
 
   <!-- sdsds -->
