@@ -23,7 +23,7 @@
 <!-- displays all buses from the database using a single bus from all buses and we display required field at required level using ejs tags-->
 <% for(const bus of buses){%>
 <div class="container-fluid bus-details">
-    <div class="row bus-item">
+    <div class="row bus-item" id="bus-item-<%=bus._id%>">
       
        <div class="col-sm-3">
           <img src="/<%= bus.Imageurl %>" class="bus-img">
@@ -45,8 +45,8 @@
           <span class="price Arrival"><%=bus.tktprice%></span>
           <div style="margin-left:200px">
             <a href="/admindb/editbus/<%=bus._id%>"><button class="btn btn-success"> EditBus</button></a>
-            <a  href="/admindb/deletebus/<%=bus._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger"> Remove Bus</button></a>
-
+            <!-- <a  href="/admindb/deletebus/<%=bus._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger"> Remove Bus</button></a> -->
+            <button type="button" style="margin-top: 15px;" class="delete-bus-btn btn btn-danger" data-bus-id="<%=bus._id%>">Delete</button>
           </div>
        </div> 
        <div class="col-sm-2">
@@ -58,6 +58,27 @@
 
   </div> 
   <%}%>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).on('click','.delete-bus-btn',function(){
+      const busId=$(this).data('bus-id');
+      console.log(busId);
+
+      $.ajax({
+        url:`/admindb/deletebus/${busId}`,
+        method:'POST',
+        success:(response)=>{
+          if(response.success===true){
+             $(`#bus-item-${busId}`).remove();
+             alert(response.msg);
+          }
+        },
+        error:(response)=>{
+          console.error(response);
+        },
+      })
+    })
+  </script>
 
   <%- include("../partials/admindbfooter.ejs"); %>
 

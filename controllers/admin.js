@@ -208,7 +208,7 @@ exports.EditBusDetails=(req,res)=>{
 
 exports.getannouncements=(req,res)=>{
    
-    res.render('announcements',{title:'Announcements'});
+    res.render('admin/announcements',{title:'Announcements'});
 };
     exports.sendannouncements = (req, res, next) => {
         const { subject, message } = req.body;
@@ -305,7 +305,8 @@ exports.RemoveBus=(req,res)=>{
             console.log('Bus Not found');
         }
         console.log('Bus Removed ');
-        res.redirect(`/admindb/allbuses`);
+        // res.redirect(`/admindb/allbuses`);
+        res.status(200).send({success:true,msg:'Bus removed succesfully'});
 
     })
     .catch((err)=>{

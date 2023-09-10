@@ -30,7 +30,7 @@ router.post('/addtour',image.single('timage'),adminController.postAddTour);
 router.get('/admindb/editbus/:id',adminController.EditBusDetails);
 router.post('/admindb/editbus/:id',image.single('uimage'),adminController.postEditBus);
 router.post('/place/edit',image.single('upimage'),adminController.postEditPlace);
-router.get('/admindb/deletebus/:id',adminController.RemoveBus);
+router.post('/admindb/deletebus/:id',adminController.RemoveBus);
 router.get('/admindb/deleteplace/:id',adminController.Removeplace);
 router.get('/admindb/deletetour/:tourid',adminController.Removetour);
 router.get('/admindb/deleteuser/:id',adminController.Removeuser);
