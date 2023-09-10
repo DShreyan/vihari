@@ -13,8 +13,8 @@ const { title } = require('process');
 var mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'srikar.a21@iiits.in',
-        pass: 'dnjnylikiujnzmrs'
+        user: 'vihari.t05@gmail.com',
+        pass: 'gyeeyglwekzwuwzy'
     }
 });
 exports.getAllUsers=(req,res)=>{
