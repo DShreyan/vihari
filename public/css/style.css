@@ -1,3 +1,17 @@
+.slide-in-up {
+  transform: translateY(+100%);
+  opacity: 0;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+.slide-down {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+
+
 .search-form-container {
   position: absolute;
   top: 50px;

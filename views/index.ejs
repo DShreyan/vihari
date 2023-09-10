@@ -24,8 +24,11 @@
                                     </div>
                                 </div>
                                 <div class="heading">
-                                    <h1 class=" display-3 text-uppercase mb-3 travel">
+                                    <h1 id="animation-title" class=" display-3 text-uppercase mb-3 travel">
                                         Travel Tour</h1>
+                                        <p id="animation-text-1" class=" display-6 text-uppercase mb-3 travel">Book your tickets at fair prices now</p>
+                                        <p id="animation-text-2" class=" display-6 text-uppercase mb-3 travel"> Explore Incredible India</p>
+
                                 </div>
                             </div>
 
@@ -380,6 +383,25 @@
                 </div>
               </div>
         </section>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", ()=>{
+            const title=document.getElementById('animation-title');
+            const text1=document.getElementById('animation-text-1');
+            const text2=document.getElementById('animation-text-2');
+
+            function animationfn(){
+              title.classList.add('slide-down');
+              text1.classList.add('slide-down');
+              text2.classList.add('slide-down');
+            }
+
+             title.classList.add('slide-in-up');
+              text1.classList.add('slide-in-up');
+              text2.classList.add('slide-in-up');
+            setTimeout(animationfn,1000);
+          })
+        </script>
         
         <%- include("partials/footer.ejs"); %>
             </body>

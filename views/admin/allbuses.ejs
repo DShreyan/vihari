@@ -23,7 +23,7 @@
 <!-- displays all buses from the database using a single bus from all buses and we display required field at required level using ejs tags-->
 <% for(const bus of buses){%>
 <div class="container-fluid bus-details">
-    <div class="row bus-item">
+    <div class="row bus-item" id="bus-item-<%=bus._id%>">
       
        <div class="col-sm-3">
           <img src="/<%= bus.Imageurl %>" class="bus-img">
@@ -45,8 +45,8 @@
           <span class="price Arrival"><%=bus.tktprice%></span>
           <div style="margin-left:200px">
             <a href="/admindb/editbus/<%=bus._id%>"><button class="btn btn-success"> EditBus</button></a>
-            <a  href="/admindb/deletebus/<%=bus._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger"> Remove Bus</button></a>
-
+            <!-- <a  href="/admindb/deletebus/<%=bus._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger"> Remove Bus</button></a> -->
+            <button type="button" style="margin-top: 15px;" class="delete-bus-btn btn btn-danger" data-bus-id="<%=bus._id%>">Delete</button>
           </div>
        </div> 
        <div class="col-sm-2">
@@ -58,7 +58,39 @@
 
   </div> 
   <%}%>
-
+  <script>
+    document.addEventListener('click', function (event) {
+      if (event.target.classList.contains('delete-bus-btn')) {
+        const busId = event.target.getAttribute('data-bus-id');
+        console.log(busId);
+  
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `/admindb/deletebus/${busId}`, true);
+  
+        xhr.onload = function () {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            const response = JSON.parse(xhr.responseText);
+            if (response.success === true) {
+              const busItem = document.getElementById(`bus-item-${busId}`);
+              if (busItem) {
+                busItem.remove();
+              }
+              alert(response.msg);
+            }
+          } else {
+            console.error('Request failed with status', xhr.status);
+          }
+        };
+  
+        xhr.onerror = function () {
+          console.error('Request failed');
+        };
+  
+        xhr.send();
+      }
+    });
+  </script>
+  
   <%- include("../partials/admindbfooter.ejs"); %>
 
   <!-- sdsds -->

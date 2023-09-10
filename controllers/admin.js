@@ -208,7 +208,7 @@ exports.EditBusDetails=(req,res)=>{
 
 exports.getannouncements=(req,res)=>{
    
-    res.render('announcements',{title:'Announcements'});
+    res.render('admin/announcements',{title:'Announcements'});
 };
     exports.sendannouncements = (req, res, next) => {
         const { subject, message } = req.body;
@@ -305,7 +305,8 @@ exports.RemoveBus=(req,res)=>{
             console.log('Bus Not found');
         }
         console.log('Bus Removed ');
-        res.redirect(`/admindb/allbuses`);
+        // res.redirect(`/admindb/allbuses`);
+        res.status(200).send({success:true,msg:'Bus removed succesfully'});
 
     })
     .catch((err)=>{
@@ -321,7 +322,8 @@ exports.Removeplace=(req,res)=>{
             console.log('Place Not found');
         }
         console.log('Place Removed ');
-        res.redirect(`/admindb/alltours`);
+        // res.redirect(`/admindb/alltours`);
+        res.status(200).send({success:true,msg:'Place removed succesfully'});
 
     })
     .catch((err)=>{
@@ -352,6 +354,12 @@ exports.Removeuser=(req,res)=>{
             console.log('User Not found');
         }
         console.log('User Removed ');
+<<<<<<< HEAD
+        //res.redirect(`/admindb/allusers`);
+        res.status(200).send({success:true,msg:'User removed succesfully'});
+
+=======
+>>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
     })
     .catch((err)=>{
         console.log(err);
