@@ -6,16 +6,16 @@ const nodemailer = require("nodemailer");
 var mailTransporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-      user: 'srikar.a21@iiits.in',
-      pass: 'dnjnylikiujnzmrs'
+      user: 'vihari.t05@gmail.com',
+      pass: 'gyeeyglwekzwuwzy'
   }
 });
 exports.verifyEmail =async(req,res)=>{
   const mailOptions = {
-    from: 'srikar.a21@iiits.in',
+    from: 'vihari.t05@gmail.com',
     to:  req.body.email,
     subject: 'Verify your Email',
-    text: `your one time password for email verificsation :${req.body.otp}`
+    text: `your one time password for email verification :${req.body.otp}`
 };
   const info = await mailTransporter.sendMail(mailOptions)
   .then((info) => {

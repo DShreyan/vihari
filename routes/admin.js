@@ -33,7 +33,11 @@ router.post('/place/edit',image.single('upimage'),adminController.postEditPlace)
 router.post('/admindb/deletebus/:id',adminController.RemoveBus);
 router.post('/admindb/deleteplace/:id',adminController.Removeplace);
 router.get('/admindb/deletetour/:tourid',adminController.Removetour);
+<<<<<<< HEAD
 router.post('/admindb/deleteuser/:id',adminController.Removeuser);
+=======
+router.delete('/admindb/deleteuser/:id',adminController.Removeuser);
+>>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
 router.post('/admindb/edit/:tourid',adminController.postEditTour);
 // router.post('/admindb/edit/:tourid',image.single('tourimage'),adminController.postEditTour);
 router.get('/admindb/announcements',adminController.getannouncements);

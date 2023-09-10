@@ -13,8 +13,8 @@ const { title } = require('process');
 var mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'srikar.a21@iiits.in',
-        pass: 'dnjnylikiujnzmrs'
+        user: 'vihari.t05@gmail.com',
+        pass: 'gyeeyglwekzwuwzy'
     }
 });
 exports.getAllUsers=(req,res)=>{
@@ -354,9 +354,12 @@ exports.Removeuser=(req,res)=>{
             console.log('User Not found');
         }
         console.log('User Removed ');
+<<<<<<< HEAD
         //res.redirect(`/admindb/allusers`);
         res.status(200).send({success:true,msg:'User removed succesfully'});
 
+=======
+>>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
     })
     .catch((err)=>{
         console.log(err);

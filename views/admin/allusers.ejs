@@ -13,10 +13,16 @@
       </div>
       
       <% for(const user of users){%>
+<<<<<<< HEAD
 
             <div class="row col-md-12 justify-content-center" >
                 <div class="col-md-1"  ></div>
                 <div class="col-md-10" id="user-item-<%=user._id%>">
+=======
+            <div class="row col-md-12 justify-content-center" id="<%= user._id%>">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+>>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
                 <div class="item-container">
                     <div class="item-image col-md-3">
                     <img class="img-thumbnail item-image" src="../Images/User_avatar.jpg"  style="width:200px"
@@ -37,10 +43,16 @@
                     
                     </div>
                     <div class="col-md-1">
+<<<<<<< HEAD
                            <!-- <a href="/admindb/deleteuser/<%=user._id%>">
                                 <div><button type="button" class="btn btn-outline-danger">Delete</button></div>
                             </a>-->
                             <div> <button type="button" class="delete-user-btn btn btn-danger" data-user-id="<%=user._id%>">Delete</button></div>
+=======
+                             <!-- <a href="/admindb/deleteuser/<%=user._id%>"> -->
+                                <div><button type="button" onclick="deleteUser('<%=user._id%>')" class="btn btn-outline-danger">Delete</button></div>
+                             <!-- </a> -->
+>>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
                     </div>
                 </div>
                 </a>
@@ -48,8 +60,10 @@
                     <hr />
                 </div>
                 </div>
+            </div>
         <%}%>
         <script>
+<<<<<<< HEAD
             document.addEventListener('click', function (event) {
               if (event.target.classList.contains('delete-user-btn')) {
                 const userId = event.target.getAttribute('data-user-id');
@@ -82,5 +96,19 @@
             });
           </script>
           
+=======
+           async function deleteUser(ID){
+             let element=document.getElementById(ID)
+             console.log(element.innerText)
+             element.remove()
+             alert('User will be removed')
+            // Used to delete user 
+            await fetch(`http://localhost:5000/admindb/deleteuser/${ID}`, {
+                method: "DELETE",
+            })
+            
+            }
+        </script>
+>>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
         <%- include("../partials/admindbfooter.ejs"); %>
 

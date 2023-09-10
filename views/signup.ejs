@@ -106,10 +106,12 @@
           submit.value='SIGN UP'
           otptag.style.display='flex'
           let post = JSON.stringify(obj)
+         
+        //  Sending OTP to Mail using fetch post and Nodemailer
           fetch("http://localhost:5000/otp", {
          method: 'post',
          body: post,
-         headers: {
+        headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     }})
