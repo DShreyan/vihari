@@ -25,9 +25,14 @@ exports.postBookTicket=async(req,res)=>{
     const age=req.body.age;
     const bus=req.body.BusId; 
     const userId=req.session.user._id;
-    const price =req.body.price;
+    const price =req.body.price;   
     const email =req.body.email;
     const phone =req.body.phone;
+    const details = seats.map((seat, i) => ({
+        name: names[i],
+        age: age[i],
+        seatNo: seat
+    }));
     console.log(price);
     let fair =parseInt(price[0])*(price.length-1)*100;
     var options = {
@@ -49,11 +54,7 @@ exports.postBookTicket=async(req,res)=>{
                 const ticket = new Ticket();
                 ticket.user = userId;
                 ticket.bus=bus;
-                const details = seats.map((seat, i) => ({
-                    name: names[i],
-                    age: age[i],
-                    seatNo: seat
-                }));
+
                 ticket.tickets = details;
                 user.tickets.push(ticket._id);
                 
@@ -65,11 +66,6 @@ exports.postBookTicket=async(req,res)=>{
                 const ticket = new Ticket();
                 ticket.user = userId;
                 ticket.bus=bus;
-                const details = seats.map((seat, i) => ({
-                    name: names[i],
-                    age: age[i],
-                    seatNo: seat
-                }));
                 ticket.tickets = details;
                 const newUser = new User({_id: userId, tickets: [ticket._id]});
                 console.log(fair + " "+ price)
@@ -78,7 +74,7 @@ exports.postBookTicket=async(req,res)=>{
         })
         .then(() => {
            
-            res.render('payment',{fair:fair,order:order1,email:email,Phone:phone});
+            res.render('payment',{fair:fair,order:order1,email:email,Phone:phone,details:details});
         })
         .catch((err) => {
             console.log(err);
@@ -157,4 +153,3 @@ exports.getAllIndexPlaces=(req,res)=>{
         res.render('tourplaces',{data:data,places:data.places});
     })
 }
-
