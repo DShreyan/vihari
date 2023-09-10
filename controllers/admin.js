@@ -352,7 +352,6 @@ exports.Removeuser=(req,res)=>{
             console.log('User Not found');
         }
         console.log('User Removed ');
-        res.redirect(`/admindb/allusers`);
     })
     .catch((err)=>{
         console.log(err);

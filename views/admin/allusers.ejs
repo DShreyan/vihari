@@ -13,8 +13,7 @@
       </div>
       
       <% for(const user of users){%>
-
-            <div class="row col-md-12 justify-content-center">
+            <div class="row col-md-12 justify-content-center" id="<%= user._id%>">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
                 <div class="item-container">
@@ -37,9 +36,9 @@
                     
                     </div>
                     <div class="col-md-1">
-                            <a href="/admindb/deleteuser/<%=user._id%>">
-                                <div><button type="button" class="btn btn-outline-danger">Delete</button></div>
-                            </a>
+                             <!-- <a href="/admindb/deleteuser/<%=user._id%>"> -->
+                                <div><button type="button" onclick="deleteUser('<%=user._id%>')" class="btn btn-outline-danger">Delete</button></div>
+                             <!-- </a> -->
                     </div>
                 </div>
                 </a>
@@ -47,6 +46,20 @@
                     <hr />
                 </div>
                 </div>
+            </div>
         <%}%>
+        <script>
+           async function deleteUser(ID){
+             let element=document.getElementById(ID)
+             console.log(element.innerText)
+             element.remove()
+             alert('User will be removed')
+            // Used to delete user 
+            await fetch(`http://localhost:5000/admindb/deleteuser/${ID}`, {
+                method: "DELETE",
+            })
+            
+            }
+        </script>
         <%- include("../partials/admindbfooter.ejs"); %>
 
