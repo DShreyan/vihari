@@ -28,26 +28,43 @@ exports.verifyEmail =async(req,res)=>{
 }
 
 exports.getsignup=(req,res)=>{
-    res.render('signup');
+  let message=req.flash('error');
+  if(message.length > 0){
+    message = message[0];
+  }
+  else{
+    message = null;
+  }
+    res.render('signup',{
+      errorMsg: message
+    });
+    
 }
-exports.getLogin=(req,res)=>{
-  res.render('login');
-}
+exports.getLogin=(req,res,next)=>{
+  let message=req.flash('error');
+  if(message.length > 0){
+    message = message[0];
+  }
+  else{
+    message = null;
+  }
+  res.render('login',{
+    errorMsg: message
+  });
+};
 exports.postsignup=async(req,res)=>{
     const fname=req.body.fname;
     const lname=req.body.lname;
     const email=req.body.email;
     const psd=req.body.psd;
-    
-
-
   
     const user=new User();
     
     User.findOne({ email: email })
     .then((userDoc) => {
       if (userDoc) {
-        res.redirect("/login");
+        req.flash('error','E-mail exists please pick a different email address');
+        res.redirect("/signup");
       }
       return bcrypt
         .hash(psd, 12)
@@ -81,7 +98,7 @@ exports.postLogin=(req,res)=>{
               req.session.user = admin;
               res.redirect("/admindb");
             } else {
-              // req.flash("error", "Password not matching");
+              req.flash("error", "Password not matching");
               res.redirect("/login");
             }
           
@@ -89,6 +106,7 @@ exports.postLogin=(req,res)=>{
     }else{
       User.findOne({email:email}).then((user)=>{
         if(!user){
+            req.flash('error','Invalid email or password');
             return res.redirect('/login');
         }
         bcrypt
@@ -105,7 +123,7 @@ exports.postLogin=(req,res)=>{
                 res.redirect("/userhome");
               });
             }
-            res.redirect("/");
+            res.redirect("/login");
           })
           .catch((err) => {
             console.log(err);

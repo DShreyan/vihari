@@ -11,6 +11,9 @@
             <div class="row login-row">
               <div class="col-md-6">
                 <form action="/signup" method="post" id="signin-form">
+                  <% if (errorMsg){%>
+                    <div class="user-message user-message--error"><%= errorMsg %></div>
+                    <% } %> 
                   <div class="row login-row">
                     <div class="col-md-6">
                       <div class="input-group mb-3 user">

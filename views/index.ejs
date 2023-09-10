@@ -1,6 +1,25 @@
 <%- include("partials/header.ejs"); %>
     <%- include("partials/navbar.ejs"); %>
 
+    <div class="scrolling-container">
+      <div class="scrolling">
+        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="text"> <a style="color: aqua;" href="/tours"> Book your tickets now  </a>Explore the world with us and embark on unforgettable adventures! Discover breathtaking landscapes, immerse yourself in diverse cultures, and create lasting memories with our exceptional travel experiences.<a style="color: aqua;" href="/tours"> Book your tickets now</a></p>
+      </div>
+      </div>
+    <script>
+      var style=document.createElement("style");
+      var position='right';
+      style.innerHTML = `
+      @keyframes my-animation {
+        0% {
+          right: -100%; 
+        }
+        100% {
+          right: 100%; 
+        }
+      }`;
+      document.head.appendChild(style);
+    </script>
         <div class="container-fluid">
             <div class="position-relative">
                 <img src="../Images/b2.jpg" alt="" class="banner img-fluid" style="height:700px"
@@ -13,8 +32,8 @@
                                     <div class="search-form-container">
                                       <form action="/searchbuses" class="form search-form" method="post">
                                         <div class="search-form__elements">
-                                            <input type="text" name="srcname" style="background-color: aliceblue;">
-                                            <input type="text" name="destname" style="background-color: aliceblue;">
+                                            <input type="text" name="srcname" placeholder="Source" style="background-color: aliceblue;">
+                                            <input type="text" name="destname" placeholder="Destination" style="background-color: aliceblue;">
                                             <input name="date" type="date" placeholder="Departure" required
                                                 style="background-color: aliceblue; width: 150px;">
                                         </div>
@@ -25,9 +44,7 @@
                                 </div>
                                 <div class="heading">
                                     <h1 id="animation-title" class=" display-3 text-uppercase mb-3 travel">
-                                        Travel Tour</h1>
-                                        <p id="animation-text-1" class=" display-6 text-uppercase mb-3 travel">Book your tickets at fair prices now</p>
-                                        <p id="animation-text-2" class=" display-6 text-uppercase mb-3 travel"> Explore Incredible India</p>
+                                        Travel Tour
 
                                 </div>
                             </div>
@@ -384,24 +401,6 @@
               </div>
         </section>
 
-        <script>
-          document.addEventListener("DOMContentLoaded", ()=>{
-            const title=document.getElementById('animation-title');
-            const text1=document.getElementById('animation-text-1');
-            const text2=document.getElementById('animation-text-2');
-
-            function animationfn(){
-              title.classList.add('slide-down');
-              text1.classList.add('slide-down');
-              text2.classList.add('slide-down');
-            }
-
-             title.classList.add('slide-in-up');
-              text1.classList.add('slide-in-up');
-              text2.classList.add('slide-in-up');
-            setTimeout(animationfn,1000);
-          })
-        </script>
         
         <%- include("partials/footer.ejs"); %>
             </body>

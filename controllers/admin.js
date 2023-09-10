@@ -18,6 +18,7 @@ var mailTransporter = nodemailer.createTransport({
     }
 });
 exports.getAllUsers=(req,res)=>{
+   
     usermodel.find({})
     .then((result)=>{
     res.render('admin/allusers',{title:'User Details',users:result});
@@ -354,12 +355,9 @@ exports.Removeuser=(req,res)=>{
             console.log('User Not found');
         }
         console.log('User Removed ');
-<<<<<<< HEAD
+
         //res.redirect(`/admindb/allusers`);
         res.status(200).send({success:true,msg:'User removed succesfully'});
-
-=======
->>>>>>> d25b949ed922ed2f2b0aa45fd42e506ff099eb75
     })
     .catch((err)=>{
         console.log(err);
