@@ -124,9 +124,15 @@ exports.getAllPlaces=(req,res)=>{
 
 }
 exports.getTours=(req,res)=>{
-    Tour.find({})
+    var search=req.body.tname;
+    console.log(search)
+    if(!search)
+    search=''
+    regex = new RegExp(search, "i");
+    console.log(regex)
+    Tour.find({tname:{$regex:regex}}).limit(3)
     .then((tours)=>{
-
+        console.log(tours)
         res.render('user/tours',{user:req.session.user,tours:tours});
     })
 }

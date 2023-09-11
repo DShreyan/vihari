@@ -1,57 +1,148 @@
 <%- include("../partials/header.ejs"); %>
-<%- include("../partials/signedinnav.ejs"); %>
-<div class="gallary-header text-center">
-    <h2>
-        tours
-    </h2>
-</div>
-<div id="pack" class="packages" style="margin-top: 40px;">
-    
-    <div class="container">
-        <div class="packages-content">
-            <div class="row">
-                <% for(const tour of tours){%>
-                <div class="col-md-4 col-sm-6">
-                    <div class="single-package-item">
-                        <div >
-                            <img style="height:200px" src="/<%=tour.DispImageurl%>" alt="package-place">
-                        </div>
-                        
-                        <div class="single-package-item-txt">
-                            <h3><a href="/tourplaces/<%=tour._id%>"><%=tour.tname%></a> <span class="pull-right"><i class="fa-solid fa-indian-rupee-sign "></i><%=tour.tprice%></span></h3>
-                            <div class="packages-para">
-                                <p>
-                                    <i class="fa fa-angle-right"></i>  5 star accomodation
-                                </p>
-                                <p>
-                                    <span>
-                                        <i class="fa fa-angle-right"></i>  transportation
-                                    </span>
-                                    <i class="fa fa-angle-right"></i> food facilities
-                                 </p>
-                            </div><!--/.packages-para-->
-                            <div class="packages-review">
-                                <p>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    
-                                </p>
-                            </div>
-                            <div class="about-btn">
-                               <a href="/payment"> <button style="background-color: #06bbcc;" class="about-view packages-btn">
-                                    book now
-                                </button></a>
-                            </div>
-                        </div>
-                    </div><!--/.single-package-item-->
+    <%- include("../partials/signedinnav.ejs"); %>
+        <div class="gallary-header text-center">
+            <h2>
+                tours
+            </h2>
+        </div>
+        <div id="pack" class="packages" style="margin-top: 40px;">
+            <div class="container">
+                <div class="packages-content">
+                    <div class="row">
+                        <% for (let i=0; i < tours.length; i++) {%>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="single-package-item">
+                                    <div>
+                                        <img style="height:200px" src="/<%=tours[i].DispImageurl%>" alt="package-place">
+                                    </div>
 
-                </div>
-            <%}%><!--/.col-->
-                </div>
-                </div>
+                                    <div class="single-package-item-txt">
+                                        <h3><a href="/tourplaces/<%=tours[i]._id%>">
+                                                <%=tours[i].tname%>
+                                            </a> <span class="pull-right"><i class="fa-solid fa-indian-rupee-sign "></i>
+                                                <%=tours[i].tprice%>
+                                            </span></h3>
+                                        <div class="packages-para">
+                                            <p>
+                                                <i class="fa fa-angle-right"></i> 5 star accomodation
+                                            </p>
+                                            <p>
+                                                <span>
+                                                    <i class="fa fa-angle-right"></i> transportation
+                                                </span>
+                                                <i class="fa fa-angle-right"></i> food facilities
+                                            </p>
+                                        </div><!--/.packages-para-->
+                                        <div class="packages-review">
+                                            <p>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+
+                                            </p>
+                                        </div>
+                                        <div class="about-btn">
+                                            <a href="/payment"> <button style="background-color: #06bbcc;"
+                                                    class="about-view packages-btn">
+                                                    book now
+                                                </button></a>
+                                        </div>
+                                    </div>
+                                </div><!--/.single-package-item-->
+
+                            </div>
+                            <%}%><!--/.col-->
+                    </div>
+                    <div class="text-center" id="load-more-container">
+                        <button id="load-more" class="btn btn-primary">Load More</button>
+                    </div>
                 </div>
             </div>
-<%- include('../partials/footer.ejs');%>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const loadMoreButton = document.getElementById('load-more');
+                const tourContainer = document.getElementById('tour-container');
+                const loadMoreContainer = document.getElementById('load-more-container');
+                let offset = 3; // Number of cards to load initially 
+                const cardDiv = document.getElementsByClassName("row")[0];
+                loadMoreButton.addEventListener('click', function () {
+                    // Make an AJAX request to fetch more tour data
+                    fetch(`/loadmoretours?offset=${offset}`, {
+                    })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(`Network response was not ok (status: ${response.status})`);
+                            }
+                            return response.json(); // Return the JSON data
+                        })
+                        .then((data) => {
+                            console.log(data);
+                            if (data.length === 0) {
+                                // Hide the "Load More" button if there are no more tours
+                                loadMoreContainer.style.display = 'none';
+                            } else {
+                                // Append the new tour cards to the container
+                                data.forEach((tour) => {
+                                    cardDiv.innerHTML += `<div class="col-md-4 col-sm-6">
+                                <div class="single-package-item">
+                                    <div>
+                                        <img style="height:200px" src="/${tour.DispImageurl}" alt="package-place">
+                                    </div>
+
+                                    <div class="single-package-item-txt">
+                                        <h3><a href="/tourplaces/${tour._id}">
+                                                ${tour.tname}
+                                            </a> <span class="pull-right"><i class="fa-solid fa-indian-rupee-sign "></i>
+                                                ${tour.tprice}
+                                            </span></h3>
+                                        <div class="packages-para">
+                                            <p>
+                                                <i class="fa fa-angle-right"></i> 5 star accomodation
+                                            </p>
+                                            <p>
+                                                <span>
+                                                    <i class="fa fa-angle-right"></i> transportation
+                                                </span>
+                                                <i class="fa fa-angle-right"></i> food facilities
+                                            </p>
+                                        </div><!--/.packages-para-->
+                                        <div class="packages-review">
+                                            <p>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+
+                                            </p>
+                                        </div>
+                                        <div class="about-btn">
+                                            <a href="/payment"> <button style="background-color: #06bbcc;"
+                                                    class="about-view packages-btn">
+                                                    book now
+                                                </button></a>
+                                        </div>
+                                    </div>
+                                </div><!--/.single-package-item-->
+
+                            </div>`;
+                                });
+                                offset += 3; // Update the offset for the next load
+                            }
+                        })
+                        .catch((error) => console.error('Error:', error));
+                });
+
+                function createTourCard(tour) {
+                    // Create and return a new tour card element based on the tour data
+                    const card = document.createElement('div');
+                    card.className = 'col-md-4 col-sm-6';
+                    // Add your card HTML structure here based on the tour data
+                    return card;
+                }
+            });
+        </script>
+        <%- include('../partials/footer.ejs');%>

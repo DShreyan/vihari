@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs"); %>
-<div class="login-page">
+  <div class="login-page">
     <%- include("partials/navbar.ejs"); %>
-    
+
       <div class="container login-container signin">
         <div class="row login-row">
           <div class="col-md-12">
@@ -12,65 +12,73 @@
               <div class="col-md-6">
                 <form action="/signup" method="post" id="signin-form">
                   <% if (errorMsg){%>
-                    <div class="user-message user-message--error"><%= errorMsg %></div>
-                    <% } %> 
-                  <div class="row login-row">
-                    <div class="col-md-6">
+                    <div class="user-message user-message--error">
+                      <%= errorMsg %>
+                    </div>
+                    <% } %>
+                      <div class="row login-row">
+                        <div class="col-md-6">
+                          <div class="input-group mb-3 user">
+                            <span class="input-group-text span"><i class="fa-solid fa-user icon"></i></span>
+                            <div class="form-floating">
+                              <input type="text" class="form-control inputs" id="f-name" name="fname"
+                                placeholder="Username" fdprocessedid="2myzgp">
+                              <span class="invalid-form" id="invalid-fname"></span>
+                              <label for="floatingInputGroup1" class="label-login">First Name</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="input-group mb-3 user">
+                            <span class="input-group-text span"><i class="fa-solid fa-user icon"></i></span>
+                            <div class="form-floating">
+                              <input type="text" class="form-control inputs" id="lname" name="lname"
+                                placeholder="Username" fdprocessedid="2myzgp">
+                              <span class="invalid-form" id="invalid-lname"></span>
+                              <label for="floatingInputGroup1" class="label-login">Last Name</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <div class="input-group mb-3 user">
                         <span class="input-group-text span"><i class="fa-solid fa-user icon"></i></span>
                         <div class="form-floating">
-                          <input type="text" class="form-control inputs" id="f-name" name="fname" placeholder="Username" fdprocessedid="2myzgp">
-                          <span class="invalid-form" id="invalid-fname"></span>
-                          <label for="floatingInputGroup1" class="label-login">First Name</label>
+                          <input type="text" class="form-control inputs" name="email" placeholder="Username"
+                            fdprocessedid="2myzgp" id="email">
+                          <span class="invalid-form" id="invalid-email"></span>
+                          <label for="floatingInputGroup1" class="label-login">Email</label>
                         </div>
                       </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="input-group mb-3 user">
-                        <span class="input-group-text span"><i class="fa-solid fa-user icon"></i></span>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
                         <div class="form-floating">
-                          <input type="text" class="form-control inputs" id="lname" name="lname" placeholder="Username" fdprocessedid="2myzgp">
-                          <span class="invalid-form" id="invalid-lname"></span>
-                          <label for="floatingInputGroup1" class="label-login">Last Name</label>
+                          <input type="password" class="form-control inputs" name="psd" placeholder="Password"
+                            fdprocessedid="2myzgp" id="password">
+                          <span class="invalid-form" id="invalid-password"></span>
+                          <label for="floatingInputGroup1" class="label-login">Password</label>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="input-group mb-3 user">
-                    <span class="input-group-text span"><i class="fa-solid fa-user icon"></i></span>
-                    <div class="form-floating">
-                      <input type="text" class="form-control inputs" name="email" placeholder="Username"  fdprocessedid="2myzgp" id="email">
-                      <span class="invalid-form" id="invalid-email"></span>
-                      <label for="floatingInputGroup1" class="label-login">Email</label>
-                    </div>
-                  </div>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
-                    <div class="form-floating">
-                      <input type="password" class="form-control inputs" name="psd" placeholder="Password" fdprocessedid="2myzgp" id="password">
-                      <span class="invalid-form" id="invalid-password"></span>
-                      <label for="floatingInputGroup1" class="label-login">Password</label>
-                    </div>
-                  </div>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
-                    <div class="form-floating">
-                      <input type="password" class="form-control inputs" placeholder="Confirm password" fdprocessedid="2myzgp" id="cpassword">
-                      <span class="invalid-form" id="invalid-cp"></span>
-                      <label for="floatingInputGroup1" class="label-login">Confirm Password</label>
-                    </div>
-                  </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
+                        <div class="form-floating">
+                          <input type="password" class="form-control inputs" placeholder="Confirm password"
+                            fdprocessedid="2myzgp" id="cpassword">
+                          <span class="invalid-form" id="invalid-cp"></span>
+                          <label for="floatingInputGroup1" class="label-login">Confirm Password</label>
+                        </div>
+                      </div>
 
-                  <div class="input-group mb-3" id="otptag" style="display: none;">
-                    <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
-                    <div class="form-floating">
-                      <input type="number" name="OTP" class="form-control inputs" placeholder="Enter the OTP" fdprocessedid="2myzgp" id="otp">
-                      <span class="invalid-form" id="invalid-otp"></span>
-                      <label for="floatingInputGroup1" class="label-login">Enter your OTP</label>
-                    </div>
-                  </div>
-                  <input type="submit" value="Generate OTP" class="btn btn-primary btn-submit-login" id="signup">
+                      <div class="input-group mb-3" id="otptag" style="display: none;">
+                        <span class="input-group-text span"><i class="fa-solid fa-key icon"></i></span>
+                        <div class="form-floating">
+                          <input type="number" name="OTP" class="form-control inputs" placeholder="Enter the OTP"
+                            fdprocessedid="2myzgp" id="otp">
+                          <span class="invalid-form" id="invalid-otp"></span>
+                          <label for="floatingInputGroup1" class="label-login">Enter your OTP</label>
+                        </div>
+                      </div>
+                      <input type="submit" value="Generate OTP" class="btn btn-primary btn-submit-login" id="signup">
                 </form>
                 <div class="row login-row signin">
                   <a href="/login">Already a user? Login</a>
@@ -82,7 +90,7 @@
       </div>
 
       <script>
-        
+
         var otp;
       var otptag = document.getElementById('otptag');
         var form = document.getElementById('signin-form');
@@ -130,6 +138,40 @@ form.addEventListener('submit', async function (e) {
     console.log('sign up successful');
   }
 });
+
+        var otptag = document.getElementById('otptag');
+        var form = document.getElementById('signin-form');
+
+        var email = document.getElementById("email")
+        email.addEventListener('keyup', () => {
+          // alert(email)
+          console.log(email.value)
+          fetch('/checkEEmail', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email.value })
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log(data.exists)
+              if (data.exists) {
+                document.getElementById('invalid-email').style.display = "block"
+                document.getElementById('invalid-email').innerHTML = 'This Email exists.';
+              } else {
+                document.getElementById('invalid-email').style.display = "none"
+                document.getElementById('invalid-email').innerHTML = '';
+              }
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              // document.getElementById('result').innerHTML = 'An error occurred.';
+            });
+        })
+
+
+       
 
       </script>
   </div>
