@@ -311,3 +311,71 @@ function msgvalidation(){
     return true;
    }
 }
+
+// functions for validating passenger details
+
+function passNameValidation(){
+let passnames =document.getElementsByClassName('pass-name');
+let inames =document.getElementsByClassName('invalid-names')
+let k=true;
+var pattern = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+for(let i=0;i<passnames.length;i++) {
+    if(passnames[i].value==""|| passnames[i].value==null){
+        inames[i].innerHTML="*Name required";
+        inames[i].style.display="block";
+        k=false;
+    }
+   
+    else if(passnames[i].value.match(pattern)){
+        inames[i].innerHTML="*No special characters are allowed ";
+        inames[i].style.display="block";
+        k=false;
+    }
+   else {
+    inames[i].style.display="none";
+   }
+}
+  return k;
+}
+
+function passAgeValidation(){
+    let passAge =document.getElementsByClassName('Age');
+    let iAge =document.getElementsByClassName('invalid-age')   
+    let k=true
+for(let i=0;i<passAge.length;i++) {
+    if(passAge[i].value==""|| passAge[i].value==null){
+        iAge[i].innerHTML="*Age required";
+        iAge[i].style.display="block";
+        k=false;
+    }
+   
+    else if(parseInt(passAge[i].value)< 1 || parseInt(passAge[i].value)==null){
+        iAge[i].innerHTML="*invalid Age";
+        iAge[i].style.display="block";
+        k=false;
+    }
+   else {
+    iAge[i].style.display="none";
+   }
+}
+  return k;
+}
+
+function phoneValidation(){
+  let phone=document.getElementById('pass-phone')
+  let invalidPhone=document.getElementById('invalid-phone')
+  if(phone.value ==null || phone.value == ''){
+    invalidPhone.innerText ='*Required Field'
+    invalidPhone.style.display='block'
+    return false
+  } 
+  else if(!phone.value.match(/^\d{10}$/)){
+    invalidPhone.innerText ='*invalid number'
+    invalidPhone.style.display='block' 
+    return false
+  }
+  else {
+    invalidPhone.style.display='none'
+    return true
+  } 
+}

@@ -91,6 +91,7 @@ async function hst(e){
     "handler": function (response){
         alert('Payment successfull');
         console.log('Payment Successful')
+        document.getElementById('loading').style.display='block'
     setTimeout(()=>{    
     document.getElementById('loading').style.display='none'        
     document.getElementById('payment-container').style.display='block'
@@ -124,7 +125,7 @@ rzp1.on('payment.failed', function (response){
 });
      rzp1.open();
      document.getElementById('payment').style.display='none'
-     document.getElementById('loading').style.display='block'
+     
 
      
 }

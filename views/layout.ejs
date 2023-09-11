@@ -150,10 +150,12 @@
        </div>
      <div class="container modal-passenger">
       <label for="pass-email">Email ID </label><br>
-        <input type="email" name="email" id="pass-email" placeholder="Email ID" style="width:100%">
+        <input type="email" name="email" id="email" placeholder="Email ID" style="width:100%;border: 1px solid grey;">
+        <span style="color: rgb(60, 8, 8);font-weight: 500;display: none;" id="invalid-email">*invalid email</span>
         <br><br>
       <label for="pass-phone">Phone</label><br>
       <input type="text" id="pass-phone" name="phone" placeholder="Phone" style="width:100%;">
+      <span id="invalid-phone" style="color: rgb(60, 8, 8);font-weight: 500;display: none;"></span>
       <br>
      
       <input type="hidden" name="BusId" value="<%=bus._id%>">
@@ -161,8 +163,10 @@
       
      </div>
      <span style="font-size: small;font-weight:lighter">By clicking on proceed,I agree that I have read and understood the <a href="#" style="text-decoration: none;">TnCs</a> and the <a href="#" style="text-decoration: none;">Privacy Policy</a></span>
-      <span class="ticket-price" style="font-weight: 600;font-size:large;margin-bottom: -40px" id="total-price">TOTAL AMOUNT : INR 1257</span>
-      <input type="submit"  value="PROCEED TO PAY" class="btn btn-primary layout-modal-submit" style="border-radius:0px;width:30%">
+     <br> <span class="ticket-price" style="font-weight: 600;font-size:large;" id="total-price">TOTAL AMOUNT : INR 1257</span>
+     <div style="border-radius:0px;margin-top: 15px;">
+      <input type="submit"  value="PROCEED TO PAY" class="btn btn-primary layout-modal-submit" >
+    </div>
     </form>
     </div>
     <div class=" row modal-footer">
@@ -173,24 +177,6 @@
   </div>
   </div>
   </div>
-  
-  <script>
-  const phoneInputField = document.querySelector("#pass-phone");
-  const phoneInput = window.intlTelInput(phoneInputField, {
-    utilsScript:
-      "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-  });
-  function process(event) {
-    event.preventDefault();
-   
-    const phoneNumber = phoneInput.getNumber();
-   
-    info.style.display = "";
-    info.innerHTML = `Phone number in E.164 format: <strong>${phoneNumber}</strong>`;
-   }
-  
-  </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   
   <script>
     let checked=[];
@@ -204,6 +190,8 @@
       }
      }
      let k=checked.length;
+     if(k==0){alert('Select your seats')}
+     else{
      let busp='<%=bus.tktprice%>'
      var i=1;
      document.getElementById('passenger-list').innerHTML=checked.map((check) =>`
@@ -213,8 +201,11 @@
       <input type="hidden" name="seat[${i}]" value="${check.name}" >
       <input type="hidden" name="pricebus" value="${busp}*${k}">
       <br>
+      <div class='my-3'>
       <label for="Passenger-${i}">Name</label>
-      <input type="text" class="form-control pass-name" name="name[${i}]" placeholder="Name" id="Passenger-${i}">
+      <input type="text" class="form-control pass-name" name="name[${i}]" placeholder="Name" id="Passenger-${i}" value=''>
+      <span class="invalid-names" style="color: rgb(60, 8, 8);font-weight: 500;display:none"></span>
+    </div>
       <br>
       <div class="row">
       <div class="col-md-6">
@@ -225,7 +216,8 @@
      </div>
      <div class="col-md-6">
        <label for="Age">Age</label><br>
-       <input type="text" name="age[${i}]" id="Age${i}" class="Age" placeholder="Age" style="height:60%; width:60%">
+       <input type="text" name="age[${i}]" id="Age${i}" class="Age" placeholder="Age" style=" width:30%">
+       <br/><span class="invalid-age" style="color: rgb(60, 8, 8);font-weight: 500;display:none;">*invalid age</span>
        <input type="number" name='price' class="price" placeholder="price" value='${parseInt('<%= bus.tktprice%>')}' style="height:60%; width:60%;display:none">
      </div>
    </div>
@@ -233,12 +225,22 @@
   
      `).join('');
     }
+    }
     function price(){
       var k =parseInt('<%= bus.tktprice%>')
     
       let price=k * checked.length;
       document.getElementById('total-price').innerHTML='TOTAL AMOUNT : INR'+price;
     }
+  </script>
+  <script>
+
+    document.getElementById('Pass-details').addEventListener('submit',(e)=>{
+      k= passNameValidation() & passAgeValidation() & EmailValidation() & phoneValidation()
+      if(k==false ){
+      e.preventDefault();
+     }
+    })
   </script>
   
   <%- include("partials/footer.ejs"); %>
