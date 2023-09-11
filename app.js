@@ -112,7 +112,17 @@ app.get("/layout",(req,res)=>{
 app.post("/layout",(req,res)=>{
   res.redirect("/payment");
 });
-
+app.post('/checkEEmail',async (req, res) => {
+  console.log(req.body)
+  const { email } = req.body;
+  const answer = await User.findOne({email:email});
+   if(answer)
+   exists=true
+  else
+  exists=false
+  console.log(exists)
+  res.json({ exists });
+});
 app.use((req, res, next) => {
   res.status(404).send('<h1>Page not found</h1>');
 });
@@ -143,4 +153,5 @@ mongoose
 // }
 
 // createadmin();
+
 
