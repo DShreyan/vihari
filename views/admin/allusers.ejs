@@ -14,9 +14,10 @@
       
       <% for(const user of users){%>
 
-            <div class="row col-md-12 justify-content-center">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+            <div class="row col-md-12 justify-content-center" >
+                <div class="col-md-1"  ></div>
+                <div class="col-md-10" id="user-item-<%=user._id%>">
+
                 <div class="item-container">
                     <div class="item-image col-md-3">
                     <img class="img-thumbnail item-image" src="../Images/User_avatar.jpg"  style="width:200px"
@@ -37,9 +38,12 @@
                     
                     </div>
                     <div class="col-md-1">
-                            <a href="/admindb/deleteuser/<%=user._id%>">
+
+                           <!-- <a href="/admindb/deleteuser/<%=user._id%>">
                                 <div><button type="button" class="btn btn-outline-danger">Delete</button></div>
-                            </a>
+                            </a>-->
+                            <div> <button type="button" class="delete-user-btn btn btn-danger" data-user-id="<%=user._id%>">Delete</button></div>
+
                     </div>
                 </div>
                 </a>
@@ -47,6 +51,42 @@
                     <hr />
                 </div>
                 </div>
+            </div>
         <%}%>
+        <script>
+
+            document.addEventListener('click', function (event) {
+              if (event.target.classList.contains('delete-user-btn')) {
+                const userId = event.target.getAttribute('data-user-id');
+                console.log(userId);
+          
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `/admindb/deleteuser/${userId}`, true);
+          
+                xhr.onload = function () {
+                  if (xhr.status >= 200 && xhr.status < 300) {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.success === true) {
+                      const userItem = document.getElementById(`user-item-${userId}`);
+                      if (userItem) {
+                        userItem.remove();
+                      }
+                      alert(response.msg);
+                    }
+                  } else {
+                    console.error('Request failed with status', xhr.status);
+                  }
+                };
+          
+                xhr.onerror = function () {
+                  console.error('Request failed');
+                };
+          
+                xhr.send();
+              }
+            });
+          </script>
+          
+
         <%- include("../partials/admindbfooter.ejs"); %>
 

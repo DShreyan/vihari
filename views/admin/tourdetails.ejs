@@ -214,7 +214,7 @@
 
 <div class="left-div col-md-8">
   <% places.forEach((place)=>{%>
-  <div class="container container-box" >
+  <div class="container container-box" id="place-item-<%=place._id%>" >
       <div class="image">
       <img src="/<%=place.Imageurl%>">
       </div>
@@ -227,7 +227,8 @@
     
           </div>
           <button type="button" class="btn btn-primary edit-btn" data-toggle="modal" data-target="#editModal" data-id="<%=place._id%>" data-name="<%=place.name%>" data-description="<%=place.description%>">Edit</button>
-          <a  href="/admindb/deleteplace/<%=place._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger">Delete</button></a>
+          <!-- <a  href="/admindb/deleteplace/<%=place._id%>"><button type="button" style="margin-top: 15px;" class="btn btn-danger">Delete</button></a> -->
+         <button type="button" class="delete-place-btn btn btn-danger" style="margin-top: 15px;" data-place-id="<%=place._id%>">Delete</button>
       </div>
       
   </div>
@@ -293,6 +294,40 @@ document.querySelectorAll('.edit-btn').forEach(button => {
   });
 });
 
+
+  document.addEventListener('click', function (event) {
+    if (event.target.classList.contains('delete-place-btn')) {
+      const placeId = event.target.getAttribute('data-place-id');
+      console.log(placeId);
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', `/admindb/deleteplace/${placeId}`, true);
+
+      xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+          const response = JSON.parse(xhr.responseText);
+          if (response.success === true) {
+            const placeItem = document.getElementById(`place-item-${placeId}`);
+            if (placeItem) {
+              placeItem.remove();
+            }
+            alert(response.msg);
+          }
+        } else {
+          console.error('Request failed with status', xhr.status);
+        }
+      };
+
+      xhr.onerror = function () {
+        console.error('Request failed');
+      };
+
+      xhr.send();
+    }
+  });
 </script>
+
+
+
 
 <%- include("../partials/admindbfooter.ejs");%>

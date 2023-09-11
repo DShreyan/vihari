@@ -12,6 +12,7 @@ const store = new MongoDbStore({
   uri: 'mongodb+srv://Srikar:Sailu3002@cluster0.ch9hacp.mongodb.net/Vihari',
   collection: "sessions",
 });
+const flash = require('express-flash');
 app.use(
   session({
     secret: "mysecret",
@@ -20,6 +21,7 @@ app.use(
     store: store,
   })
 );
+app.use(flash());
 app.use((req, res, next) => {
   if (!req.session.user) {
     return next();
@@ -33,7 +35,8 @@ app.use((req, res, next) => {
       next();
     })
     .catch((err) => {
-      next(new Error(err));
+      // next(new Error(err));
+      throw new Error(err);
     });
 });
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -57,6 +60,7 @@ app.use(authRoutes);
 app.use(tourRoutes);
 app.use(userRoutes);
 app.use(busRoutes);
+
 
 app.get("/", function (req, res) {
   Tour.find({})
@@ -109,6 +113,10 @@ app.post("/layout",(req,res)=>{
   res.redirect("/payment");
 });
 
+app.use((req, res, next) => {
+  res.status(404).send('<h1>Page not found</h1>');
+});
+
 mongoose
   .connect(
     "mongodb+srv://Srikar:Sailu3002@cluster0.ch9hacp.mongodb.net/Vihari"
@@ -135,3 +143,4 @@ mongoose
 // }
 
 // createadmin();
+
