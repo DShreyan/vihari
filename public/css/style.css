@@ -1,16 +1,20 @@
-.slide-in-up {
-  transform: translateY(+100%);
-  opacity: 0;
-  transition: transform 1s ease, opacity 1s ease;
+.scrolling{
+  position:relative;
+  height:30px;
+  overflow:hidden;
+  color:#fff;
+  background-color: #0000008e;
+  border-bottom: 2px solid #009cff;
+  border-top: 2px solid #009cff;
 }
 
-.slide-down {
-  transform: translateY(0);
-  opacity: 1;
-  transition: transform 1s ease, opacity 1s ease;
+.scrolling .text{
+  position:absolute;
+  margin:5px 0;
+  padding:0;
+  width: max-content;
+  animation: my-animation 24s linear infinite;
 }
-
-
 
 .search-form-container {
   position: absolute;
@@ -21,6 +25,31 @@
   padding: 0 3.2rem;
   height: 300px;
 }
+
+.user-message{
+  margin:auto;
+  width:150px;
+  border:1px solid rgb(70, 70, 245);
+  padding:0.5rem;
+  border-radius: 3px;
+  background:rgb(180, 180, 240) ;
+  text-align: center;
+}
+
+.user-message--error{
+  border-color: red;
+  background:rgb(225,176, 176) ;
+  color: red;
+}
+
+@media (min-width: 768px){
+  .user-message{
+    width:30rem;
+  }
+}
+  
+
+
 
 .search-form {
   max-width: 75rem;
