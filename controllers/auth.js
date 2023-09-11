@@ -90,16 +90,16 @@ exports.postLogin=(req,res)=>{
     const lname=req.body.lname;
     const email=req.body.email;
     const psd=req.body.psd;
-    if(email=="admin@gmail.com"){
+    if(email=="vihari.t05@gmail.com"){
       Admin.findOne({ email: email }).then((admin) => {
        
-            if (psd=='admin@123') {
+            if (psd=='vihari_team5') {
               req.session.isLoggedIn = true;
               req.session.user = admin;
               res.redirect("/admindb");
             } else {
               req.flash("error", "Password not matching");
-              res.redirect("/login");
+              res.render('login',{errorMsg:'Invalid email or password'});
             }
           
       });
@@ -107,7 +107,7 @@ exports.postLogin=(req,res)=>{
       User.findOne({email:email}).then((user)=>{
         if(!user){
             req.flash('error','Invalid email or password');
-            return res.redirect('/login');
+            res.render('login',{errorMsg:'Invalid email or password'});
         }
         bcrypt
           .compare(psd, user.password)
@@ -123,11 +123,11 @@ exports.postLogin=(req,res)=>{
                 res.redirect("/userhome");
               });
             }
-            res.redirect("/login");
+            res.render('login',{errorMsg:'Invalid email or password'});
           })
           .catch((err) => {
             console.log(err);
-            res.redirect("/login");
+            res.render('login',{errorMsg:'Invalid email or password'});
           });
       });
     }

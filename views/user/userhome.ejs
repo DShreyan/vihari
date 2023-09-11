@@ -1,6 +1,35 @@
 <%- include("../partials/header.ejs"); %>
+<div class="loading">
+<div class="preloader-container">
+  <div class="preloader"></div>
+  <div class="preloader-text">Loading...</div>
+  </div></div>
     <%- include("../partials/signedinnav.ejs"); %>
-
+    <div class="scrolling-container">
+      <div class="scrolling">
+        <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="text"> <a style="color: aqua;" href="/tours"> Book your tickets now  </a>Explore the world with us and embark on unforgettable adventures! Discover breathtaking landscapes, immerse yourself in diverse cultures, and create lasting memories with our exceptional travel experiences.<a style="color: aqua;" href="/tours"> Book your tickets now</a></p>
+      </div>
+      </div>
+    <script>
+      var style=document.createElement("style");
+      var position='right';
+      style.innerHTML = `
+      @keyframes my-animation {
+        0% {
+          right: -100%; 
+        }
+        100% {
+          right: 100%; 
+        }
+      }`;
+      document.head.appendChild(style);
+      window.addEventListener('load', function () {
+            setTimeout(function () {
+                const preloader = document.querySelector('.preloader-container');
+                preloader.style.display = 'none'; // Hide the preloader after a certain time
+            }, 1000); // Adjust the time delay (in milliseconds) as needed
+        });
+    </script>
         <div class="container-fluid">
             <div class="position-relative">
                 <img src="../Images/b2.jpg" alt="" class="banner img-fluid" style="height:700px"

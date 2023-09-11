@@ -217,7 +217,7 @@ exports.getannouncements=(req,res)=>{
             .then((users) => {
                 const emailList = users.map(user => user.email);
                 const mailOptions = {
-                    from: 'srikar.a21@iiits.in',
+                    from: 'vihari.t05@gmail.com',
                     to: emailList.join(','),
                     subject: subject,
                     text: message
