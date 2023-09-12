@@ -9,12 +9,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
       },
-      email: {
+     email: {
         type: String,
         required: true,
         trim: true,
         unique: true
     },
+    resetToken : String,
+    resetTokenExpiration : Date,
+
     password: {
         type: String,
         required:true
