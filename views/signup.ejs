@@ -98,7 +98,7 @@
         var email = document.getElementById("email")
         email.addEventListener('keyup', () => {
           // alert(email)
-          console.log(email.value)
+          // console.log(email.value)
           fetch('/checkEEmail', {
             method: 'POST',
             headers: {
@@ -108,7 +108,7 @@
           })
             .then(response => response.json())
             .then(data => {
-              console.log(data.exists)
+              // console.log(data.exists)
               if (data.exists) {
                 document.getElementById('invalid-email').style.display = "block"
                 document.getElementById('invalid-email').innerHTML = 'This Email exists.';

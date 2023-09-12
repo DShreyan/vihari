@@ -222,7 +222,7 @@ background-color: blueviolet;
 margin-bottom: -1%;
 }
 input.pass-name,input#pass-phone,input#pass-email,input.Age{
-border: 1px solid grey;F
+border: 1px solid grey;
 }
 input.form-control.pass-name::placeholder,input#pass-phone::placeholder,input#pass-email::placeholder,input.Age::placeholder{
 color: black;
